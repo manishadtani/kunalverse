@@ -1,42 +1,65 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiCamera, FiEdit, FiTrendingUp, FiAward, FiHeart, FiZap } from 'react-icons/fi';
+import { FiCamera, FiEdit, FiTrendingUp, FiAward } from 'react-icons/fi';
 
 const About = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [flippedCard, setFlippedCard] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState({});
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
     window.addEventListener('resize', handleResize);
-    
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Auto-rotate cards
+  const galleryImages = useMemo(() => [
+    '/cam4.jpeg',
+    '/cam3.jpeg',
+    '/cam5.jpeg',
+    '/cam6.png',
+  ], []);
+
+  // Preload images
+  useEffect(() => {
+    galleryImages.forEach((src, index) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        setImageLoaded(prev => ({ ...prev, [index]: true }));
+      };
+    });
+  }, [galleryImages]);
+
+  // Auto-rotate with optimized timing
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(interval);
+  }, [galleryImages.length]);
+
+  const handleImageChange = useCallback((index) => {
+    setCurrentImageIndex(index);
   }, []);
 
-  const galleryImages = [
-    '/kunal-photo.jpeg',
-    '/kunal-photo.jpeg',
-    '/kunal-photo.jpeg',
-    '/kunal-photo.jpeg',
-  ];
+  const handlePrevImage = useCallback(() => {
+    setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  }, [galleryImages.length]);
 
-  const cards = [
+  const handleNextImage = useCallback(() => {
+    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+  }, [galleryImages.length]);
+
+  const cards = useMemo(() => [
     {
       id: 1,
       icon: FiCamera,
       title: 'Video Production',
       frontText: 'Professional video editing & cinematography',
-      backImage: '/kunal-photo.jpeg',
+      backImage: '/videdit.jpg',
       color: '#0066FF',
     },
     {
@@ -44,7 +67,7 @@ const About = () => {
       icon: FiEdit,
       title: 'Content Strategy',
       frontText: 'Creative storytelling that engages audiences',
-      backImage: '/kunal-photo.jpeg',
+      backImage: '/cont2.jpg',
       color: '#8B5CF6',
     },
     {
@@ -52,7 +75,7 @@ const About = () => {
       icon: FiTrendingUp,
       title: 'Growth Focused',
       frontText: 'Data-driven content optimization',
-      backImage: '/kunal-photo.jpeg',
+      backImage: '/content1.jpg',
       color: '#C400FF',
     },
     {
@@ -60,16 +83,10 @@ const About = () => {
       icon: FiAward,
       title: 'Quality First',
       frontText: 'High production value in every project',
-      backImage: '/kunal-photo.jpeg',
+      backImage: '/cam10.png',
       color: '#0066FF',
     },
-  ];
-
-  const stats = [
-    { label: 'Videos Created', value: '50+', icon: FiCamera },
-    { label: 'Happy Clients', value: '30+', icon: FiHeart },
-    { label: 'Engagement', value: '95%', icon: FiZap },
-  ];
+  ], []);
 
   return (
     <section
@@ -77,21 +94,20 @@ const About = () => {
       style={{
         position: 'relative',
         minHeight: 'auto',
-        padding: isMobile ? '0px 20px' : '120px 60px',
+        padding: isMobile ? '60px 20px' : '120px 60px',
         background: 'linear-gradient(180deg, #000000 0%, #0A0F1F 100%)',
         overflow: 'hidden',
       }}
     >
-      {/* Background Effects */}
+      {/* Optimized Background Effects */}
       <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: 0 }}>
-        {/* Gradient Orb - Left */}
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 40, 0],
+            scale: [1, 1.15, 1],
+            x: [0, 30, 0],
           }}
           transition={{
-            duration: 20,
+            duration: 25,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
@@ -104,17 +120,17 @@ const About = () => {
             background: 'radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, transparent 70%)',
             borderRadius: '50%',
             filter: 'blur(80px)',
+            willChange: 'transform',
           }}
         />
 
-        {/* Gradient Orb - Right */}
         <motion.div
           animate={{
-            scale: [1.2, 1, 1.2],
-            y: [0, -40, 0],
+            scale: [1.15, 1, 1.15],
+            y: [0, -30, 0],
           }}
           transition={{
-            duration: 18,
+            duration: 22,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
@@ -127,6 +143,7 @@ const About = () => {
             background: 'radial-gradient(circle, rgba(196, 0, 255, 0.12) 0%, transparent 70%)',
             borderRadius: '50%',
             filter: 'blur(100px)',
+            willChange: 'transform',
           }}
         />
       </div>
@@ -144,14 +161,14 @@ const About = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          viewport={{ once: true, amount: 0.3 }}
           style={{
             textAlign: 'center',
             marginBottom: isMobile ? '50px' : '80px',
           }}
         >
-          <motion.h2
+          <h2
             style={{
               fontSize: isMobile ? '36px' : '56px',
               fontWeight: '900',
@@ -165,8 +182,8 @@ const About = () => {
             }}
           >
             About Me
-          </motion.h2>
-          <motion.p
+          </h2>
+          <p
             style={{
               fontSize: isMobile ? '16px' : '20px',
               color: '#9CA3AF',
@@ -177,7 +194,7 @@ const About = () => {
             }}
           >
             Creative storyteller bringing ideas to life through video
-          </motion.p>
+          </p>
         </motion.div>
 
         {/* Main Content Layout */}
@@ -189,34 +206,27 @@ const About = () => {
             alignItems: 'start',
           }}
         >
-          {/* Left Side - Content */}
+          {/* Left Side - Image Slider */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: false, amount: 0.3 }}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '32px',
-            }}
+            transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.3 }}
           >
-            {/* Main Image with Slider */}
             <div
               style={{
                 position: 'relative',
                 height: isMobile ? '350px' : '535px',
                 borderRadius: '24px',
-                overflow: 'hidden',
               }}
             >
-              {/* Neon Glow */}
+              {/* Neon Glow - Optimized */}
               <motion.div
                 animate={{
-                  opacity: [0.4, 0.8, 0.4],
+                  opacity: [0.4, 0.7, 0.4],
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 4,
                   repeat: Infinity,
                   ease: 'easeInOut',
                 }}
@@ -230,49 +240,154 @@ const About = () => {
                 }}
               />
 
-              {/* Image Slider */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentImageIndex}
-                  initial={{ opacity: 0, scale: 1.1 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.5 }}
+              {/* Image Container with Black Background */}
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '20px',
+                  overflow: 'hidden',
+                  border: '2px solid rgba(0, 102, 255, 0.5)',
+                  boxShadow: '0 20px 60px rgba(0, 0, 0, 0.8)',
+                  zIndex: 1,
+                  backgroundColor: '#000',
+                }}
+              >
+                {/* Smooth Crossfade Image Slider */}
+                <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={currentImageIndex}
+                      src={galleryImages[currentImageIndex]}
+                      alt={`Gallery ${currentImageIndex + 1}`}
+                      initial={{ opacity: 0, scale: 1.1 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{
+                        duration: 0.7,
+                        ease: [0.4, 0, 0.2, 1]
+                      }}
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        filter: 'contrast(1.1) saturate(1.2)',
+                      }}
+                    />
+                  </AnimatePresence>
+                </div>
+
+                {/* Gradient Overlay */}
+                <div
                   style={{
-                    position: 'relative',
-                    width: '100%',
-                    height: '100%',
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(135deg, rgba(0, 102, 255, 0.08) 0%, rgba(196, 0, 255, 0.08) 100%)',
+                    mixBlendMode: 'overlay',
+                    pointerEvents: 'none',
+                  }}
+                />
+
+                {/* Navigation Arrows */}
+                {!isMobile && (
+                  <>
+                    {/* Left Arrow */}
+                    <motion.button
+                      onClick={handlePrevImage}
+                      whileHover={{ scale: 1.1, x: -3 }}
+                      whileTap={{ scale: 0.9 }}
+                      style={{
+                        position: 'absolute',
+                        left: '20px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '50%',
+                        background: 'rgba(0, 0, 0, 0.6)',
+                        backdropFilter: 'blur(10px)',
+                        border: '2px solid rgba(0, 102, 255, 0.5)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                        zIndex: 4,
+                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 102, 255, 0.3)',
+                        transition: 'all 0.3s ease',
+                      }}
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                      </svg>
+                    </motion.button>
+
+                    {/* Right Arrow */}
+                    <motion.button
+                      onClick={handleNextImage}
+                      whileHover={{ scale: 1.1, x: 3 }}
+                      whileTap={{ scale: 0.9 }}
+                      style={{
+                        position: 'absolute',
+                        right: '20px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '50%',
+                        background: 'rgba(0, 0, 0, 0.6)',
+                        backdropFilter: 'blur(10px)',
+                        border: '2px solid rgba(0, 102, 255, 0.5)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                        zIndex: 4,
+                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 102, 255, 0.3)',
+                        transition: 'all 0.3s ease',
+                      }}
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
+                    </motion.button>
+                  </>
+                )}
+
+                {/* Image Counter */}
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  style={{
+                    position: 'absolute',
+                    top: '20px',
+                    right: '20px',
+                    padding: '8px 16px',
+                    background: 'rgba(0, 0, 0, 0.7)',
+                    backdropFilter: 'blur(10px)',
                     borderRadius: '20px',
-                    overflow: 'hidden',
-                    border: '2px solid rgba(0, 102, 255, 0.5)',
-                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.8)',
-                    zIndex: 1,
+                    border: '1px solid rgba(0, 102, 255, 0.4)',
+                    zIndex: 4,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.5)',
                   }}
                 >
-                  <img
-                    src={galleryImages[currentImageIndex]}
-                    alt={`Gallery ${currentImageIndex + 1}`}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      filter: 'contrast(1.1) saturate(1.2)',
-                    }}
-                  />
-
-                  {/* Gradient Overlay */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      background: 'linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, rgba(196, 0, 255, 0.1) 100%)',
-                      mixBlendMode: 'overlay',
-                    }}
-                  />
+                  <span style={{ color: '#0066FF', fontWeight: '700', fontSize: '14px', fontFamily: 'Poppins, sans-serif' }}>
+                    {currentImageIndex + 1}
+                  </span>
+                  <span style={{ color: '#6B7280', fontSize: '12px' }}>/</span>
+                  <span style={{ color: '#9CA3AF', fontSize: '14px', fontFamily: 'Inter, sans-serif' }}>
+                    {galleryImages.length}
+                  </span>
                 </motion.div>
-              </AnimatePresence>
+              </div>
 
-              {/* Slider Dots */}
+              {/* Slider Dots - Optimized */}
               <div
                 style={{
                   position: 'absolute',
@@ -280,100 +395,44 @@ const About = () => {
                   left: '50%',
                   transform: 'translateX(-50%)',
                   display: 'flex',
-                  gap: '8px',
+                  gap: '10px',
                   zIndex: 3,
+                  padding: '8px 16px',
+                  background: 'rgba(0, 0, 0, 0.3)',
+                  backdropFilter: 'blur(10px)',
+                  borderRadius: '20px',
                 }}
               >
                 {galleryImages.map((_, index) => (
                   <motion.button
                     key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    whileHover={{ scale: 1.2 }}
-                    whileTap={{ scale: 0.9 }}
+                    onClick={() => handleImageChange(index)}
+                    whileHover={{ scale: 1.15 }}
+                    whileTap={{ scale: 0.95 }}
                     style={{
-                      width: currentImageIndex === index ? '32px' : '8px',
-                      height: '8px',
-                      borderRadius: '4px',
+                      width: currentImageIndex === index ? '36px' : '10px',
+                      height: '10px',
+                      borderRadius: '5px',
                       background: currentImageIndex === index 
                         ? 'linear-gradient(90deg, #0066FF, #C400FF)'
-                        : 'rgba(255, 255, 255, 0.3)',
+                        : 'rgba(255, 255, 255, 0.4)',
                       border: 'none',
                       cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      boxShadow: currentImageIndex === index ? '0 0 10px rgba(0, 102, 255, 0.8)' : 'none',
+                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                      boxShadow: currentImageIndex === index ? '0 0 15px rgba(0, 102, 255, 0.8)' : 'none',
                     }}
                   />
                 ))}
               </div>
             </div>
-
-            {/* Description */}
-            {/* <div
-              style={{
-                padding: isMobile ? '24px' : '32px',
-                background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 102, 255, 0.08) 100%)',
-                border: '1px solid rgba(0, 102, 255, 0.3)',
-                borderRadius: '20px',
-                backdropFilter: 'blur(10px)',
-              }}
-            >
-              <p
-                style={{
-                  fontSize: isMobile ? '15px' : '17px',
-                  color: '#E5E7EB',
-                  lineHeight: '1.8',
-                  fontFamily: 'Inter, sans-serif',
-                  marginBottom: '24px',
-                }}
-              >
-                Main ek passionate content creator hoon jo storytelling ko life mein laata hoon through powerful visuals aur engaging narratives. Har project mein creativity, technical expertise, aur dedication combine karta hoon.
-              </p>
-
-              {/* Stats */}
-              {/* <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
-                  gap: '16px',
-                }}
-              >
-                {stats.map((stat, index) => {
-                  const Icon = stat.icon;
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.1 * index }}
-                      viewport={{ once: false }}
-                      style={{
-                        textAlign: 'center',
-                        padding: '16px 8px',
-                        background: 'rgba(0, 102, 255, 0.05)',
-                        borderRadius: '12px',
-                        border: '1px solid rgba(0, 102, 255, 0.2)',
-                      }}
-                    >
-                      <Icon size={20} style={{ color: '#0066FF', marginBottom: '8px' }} />
-                      <div style={{ fontSize: '20px', fontWeight: '800', color: '#0066FF', fontFamily: 'Poppins, sans-serif' }}>
-                        {stat.value}
-                      </div>
-                      <div style={{ fontSize: '11px', color: '#9CA3AF', marginTop: '4px' }}>
-                        {stat.label}
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div> */}
-            {/* </div> */} 
           </motion.div>
 
-          {/* Right Side - Flip Cards */}
+          {/* Right Side - Flip Cards - Optimized */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.7, delay: 0.25, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.3 }}
             style={{
               display: 'grid',
               gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
@@ -387,13 +446,17 @@ const About = () => {
               return (
                 <motion.div
                   key={card.id}
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  onHoverStart={() => setFlippedCard(card.id)}
-                  onHoverEnd={() => setFlippedCard(null)}
-                  onClick={() => setFlippedCard(isFlipped ? null : card.id)}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: index * 0.08,
+                    ease: 'easeOut'
+                  }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  onHoverStart={() => !isMobile && setFlippedCard(card.id)}
+                  onHoverEnd={() => !isMobile && setFlippedCard(null)}
+                  onClick={() => isMobile && setFlippedCard(isFlipped ? null : card.id)}
                   style={{
                     perspective: '1000px',
                     height: isMobile ? '220px' : '250px',
@@ -402,7 +465,10 @@ const About = () => {
                 >
                   <motion.div
                     animate={{ rotateY: isFlipped ? 180 : 0 }}
-                    transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
+                    transition={{ 
+                      duration: 0.6, 
+                      ease: [0.4, 0, 0.2, 1],
+                    }}
                     style={{
                       position: 'relative',
                       width: '100%',
@@ -428,7 +494,6 @@ const About = () => {
                         boxShadow: `0 8px 32px ${card.color}20`,
                       }}
                     >
-                      {/* Icon */}
                       <div
                         style={{
                           background: `${card.color}20`,
@@ -445,7 +510,6 @@ const About = () => {
                         <Icon size={28} style={{ color: card.color }} />
                       </div>
 
-                      {/* Content */}
                       <div>
                         <h3
                           style={{
@@ -470,10 +534,9 @@ const About = () => {
                         </p>
                       </div>
 
-                      {/* Flip Indicator */}
                       <motion.div
                         animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
+                        transition={{ duration: 2, repeat: Infinity }}
                         style={{
                           position: 'absolute',
                           bottom: '16px',
@@ -483,7 +546,7 @@ const About = () => {
                           fontWeight: '600',
                         }}
                       >
-                        Hover to flip →
+                        {isMobile ? 'Tap to flip →' : 'Hover to flip →'}
                       </motion.div>
                     </div>
 
@@ -511,7 +574,6 @@ const About = () => {
                           filter: 'brightness(0.8) contrast(1.1)',
                         }}
                       />
-                      {/* Overlay */}
                       <div
                         style={{
                           position: 'absolute',

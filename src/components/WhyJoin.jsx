@@ -1,6 +1,606 @@
+// // // import React, { useState, useEffect } from 'react';
+// // // import { motion } from 'framer-motion';
+// // // import { FiGlobe, FiTrendingUp, FiUsers, FiZap, FiHeart, FiStar } from 'react-icons/fi';
+
+// // // const WhyJoin = () => {
+// // //   const [isMobile, setIsMobile] = useState(false);
+
+// // //   useEffect(() => {
+// // //     const handleResize = () => setIsMobile(window.innerWidth < 768);
+// // //     handleResize();
+// // //     window.addEventListener('resize', handleResize);
+    
+// // //     return () => window.removeEventListener('resize', handleResize);
+// // //   }, []);
+
+// // //   const reasons = [
+// // //     {
+// // //       id: 1,
+// // //       icon: FiGlobe,
+// // //       title: 'A Global Hub for Content',
+// // //       description: 'Join a thriving community of creators from around the world. Connect, collaborate, and grow together in a space where creativity knows no boundaries. Share your stories and learn from the best.',
+// // //       color: '#0066FF',
+// // //       gradient: 'linear-gradient(135deg, #0066FF, #00B4FF)',
+// // //       features: ['Global Network', 'Cross-border Collaboration', 'Diverse Perspectives'],
+// // //     },
+// // //     {
+// // //       id: 2,
+// // //       icon: FiTrendingUp,
+// // //       title: 'Driving the Future of Content',
+// // //       description: 'Be part of the revolution shaping how content is created and consumed. Stay ahead with cutting-edge techniques, trending formats, and innovative storytelling methods that define the next generation of digital media.',
+// // //       color: '#8B5CF6',
+// // //       gradient: 'linear-gradient(135deg, #8B5CF6, #C084FC)',
+// // //       features: ['Innovation First', 'Trend Setting', 'Future Ready'],
+// // //     },
+// // //     {
+// // //       id: 3,
+// // //       icon: FiUsers,
+// // //       title: 'An Ecosystem of Support',
+// // //       description: 'Experience genuine community backing at every step of your journey. From mentorship to resources, feedback to opportunities—get everything you need to thrive. We grow together, succeed together.',
+// // //       color: '#C400FF',
+// // //       gradient: 'linear-gradient(135deg, #C400FF, #FF00FF)',
+// // //       features: ['Mentorship', '24/7 Support', 'Resource Library'],
+// // //     },
+// // //   ];
+
+// // //   return (
+// // //     <section
+// // //       id="whyjoin"
+// // //       style={{
+// // //         position: 'relative',
+// // //         minHeight: 'auto',
+// // //         padding: isMobile ? '80px 20px' : '120px 60px',
+// // //         background: 'linear-gradient(180deg, #0A0F1F 0%, #000000 50%, #0A0F1F 100%)',
+// // //         overflow: 'hidden',
+// // //       }}
+// // //     >
+// // //       {/* Background Effects */}
+// // //       <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: 0 }}>
+// // //         {/* Animated Gradient Orbs */}
+// // //         <motion.div
+// // //           animate={{
+// // //             scale: [1, 1.3, 1],
+// // //             x: [0, 60, 0],
+// // //             y: [0, -40, 0],
+// // //           }}
+// // //           transition={{
+// // //             duration: 20,
+// // //             repeat: Infinity,
+// // //             ease: 'easeInOut',
+// // //           }}
+// // //           style={{
+// // //             position: 'absolute',
+// // //             top: '10%',
+// // //             left: '-10%',
+// // //             width: isMobile ? '400px' : '700px',
+// // //             height: isMobile ? '400px' : '700px',
+// // //             background: 'radial-gradient(circle, rgba(0, 102, 255, 0.2) 0%, transparent 70%)',
+// // //             borderRadius: '50%',
+// // //             filter: 'blur(100px)',
+// // //           }}
+// // //         />
+
+// // //         <motion.div
+// // //           animate={{
+// // //             scale: [1.3, 1, 1.3],
+// // //             x: [0, -60, 0],
+// // //             y: [0, 40, 0],
+// // //           }}
+// // //           transition={{
+// // //             duration: 25,
+// // //             repeat: Infinity,
+// // //             ease: 'easeInOut',
+// // //           }}
+// // //           style={{
+// // //             position: 'absolute',
+// // //             bottom: '10%',
+// // //             right: '-10%',
+// // //             width: isMobile ? '450px' : '800px',
+// // //             height: isMobile ? '450px' : '800px',
+// // //             background: 'radial-gradient(circle, rgba(196, 0, 255, 0.15) 0%, transparent 70%)',
+// // //             borderRadius: '50%',
+// // //             filter: 'blur(120px)',
+// // //           }}
+// // //         />
+
+// // //         {/* Floating Particles */}
+// // //         {!isMobile && [...Array(12)].map((_, i) => (
+// // //           <motion.div
+// // //             key={i}
+// // //             animate={{
+// // //               y: [0, -100, 0],
+// // //               x: [0, Math.random() * 100 - 50, 0],
+// // //               opacity: [0.2, 0.5, 0.2],
+// // //             }}
+// // //             transition={{
+// // //               duration: 10 + i * 2,
+// // //               repeat: Infinity,
+// // //               delay: i * 0.5,
+// // //               ease: 'easeInOut',
+// // //             }}
+// // //             style={{
+// // //               position: 'absolute',
+// // //               left: `${5 + i * 8}%`,
+// // //               top: `${20 + (i % 3) * 20}%`,
+// // //               width: '4px',
+// // //               height: '4px',
+// // //               background: i % 2 === 0 ? '#0066FF' : '#C400FF',
+// // //               borderRadius: '50%',
+// // //               boxShadow: `0 0 10px ${i % 2 === 0 ? '#0066FF' : '#C400FF'}`,
+// // //             }}
+// // //           />
+// // //         ))}
+
+// // //         {/* Grid Pattern */}
+// // //         {!isMobile && (
+// // //           <div
+// // //             style={{
+// // //               position: 'absolute',
+// // //               inset: 0,
+// // //               backgroundImage:
+// // //                 'linear-gradient(rgba(0, 102, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 102, 255, 0.03) 1px, transparent 1px)',
+// // //               backgroundSize: '60px 60px',
+// // //               opacity: 0.4,
+// // //             }}
+// // //           />
+// // //         )}
+// // //       </div>
+
+// // //       {/* Main Container */}
+// // //       <div
+// // //         style={{
+// // //           position: 'relative',
+// // //           maxWidth: '1400px',
+// // //           margin: '0 auto',
+// // //           zIndex: 2,
+// // //         }}
+// // //       >
+// // //         {/* Header */}
+// // //         <motion.div
+// // //           initial={{ opacity: 0, y: 30 }}
+// // //           whileInView={{ opacity: 1, y: 0 }}
+// // //           transition={{ duration: 0.8 }}
+// // //           viewport={{ once: false, amount: 0.3 }}
+// // //           style={{
+// // //             textAlign: 'center',
+// // //             marginBottom: isMobile ? '60px' : '100px',
+// // //           }}
+// // //         >
+// // //           <motion.div
+// // //             initial={{ scale: 0 }}
+// // //             whileInView={{ scale: 1 }}
+// // //             transition={{ duration: 0.6, type: 'spring' }}
+// // //             viewport={{ once: false }}
+// // //             style={{
+// // //               display: 'inline-flex',
+// // //               alignItems: 'center',
+// // //               gap: '10px',
+// // //               padding: '12px 24px',
+// // //               background: 'linear-gradient(135deg, rgba(0, 102, 255, 0.15) 0%, rgba(196, 0, 255, 0.15) 100%)',
+// // //               border: '1px solid rgba(0, 102, 255, 0.4)',
+// // //               borderRadius: '50px',
+// // //               marginBottom: '24px',
+// // //               boxShadow: '0 0 30px rgba(0, 102, 255, 0.3)',
+// // //             }}
+// // //           >
+// // //             <FiZap style={{ color: '#0066FF' }} size={20} />
+// // //             <span
+// // //               style={{
+// // //                 color: '#0066FF',
+// // //                 fontWeight: '600',
+// // //                 fontSize: '14px',
+// // //                 fontFamily: 'Inter, sans-serif',
+// // //                 letterSpacing: '0.5px',
+// // //                 textTransform: 'uppercase',
+// // //               }}
+// // //             >
+// // //               Why Choose Me
+// // //             </span>
+// // //           </motion.div>
+
+// // //           <motion.h2
+// // //             style={{
+// // //               fontSize: isMobile ? '36px' : '56px',
+// // //               fontWeight: '900',
+// // //               fontFamily: 'Baloo 2, Poppins, sans-serif',
+// // //               marginBottom: '20px',
+// // //               lineHeight: '1.2',
+// // //             }}
+// // //           >
+// // //             <motion.span
+// // //               animate={{
+// // //                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+// // //               }}
+// // //               transition={{
+// // //                 duration: 5,
+// // //                 repeat: Infinity,
+// // //                 ease: 'linear',
+// // //               }}
+// // //               style={{
+// // //                 background: 'linear-gradient(90deg, #0066FF 0%, #8B5CF6 25%, #C400FF 50%, #8B5CF6 75%, #0066FF 100%)',
+// // //                 backgroundSize: '200% auto',
+// // //                 WebkitBackgroundClip: 'text',
+// // //                 WebkitTextFillColor: 'transparent',
+// // //                 backgroundClip: 'text',
+// // //                 display: 'inline-block',
+// // //               }}
+// // //             >
+// // //               Why Join the Journey?
+// // //             </motion.span>
+// // //           </motion.h2>
+
+// // //           <motion.p
+// // //             style={{
+// // //               fontSize: isMobile ? '16px' : '20px',
+// // //               color: '#9CA3AF',
+// // //               lineHeight: '1.6',
+// // //               fontFamily: 'Inter, sans-serif',
+// // //               maxWidth: '800px',
+// // //               margin: '0 auto',
+// // //             }}
+// // //           >
+// // //             Discover the three pillars that make this community extraordinary and transform content creators into industry leaders
+// // //           </motion.p>
+// // //         </motion.div>
+
+// // //         {/* Reasons Grid */}
+// // //         <div
+// // //           style={{
+// // //             display: 'flex',
+// // //             flexDirection: 'column',
+// // //             gap: isMobile ? '40px' : '60px',
+// // //           }}
+// // //         >
+// // //           {reasons.map((reason, index) => {
+// // //             const Icon = reason.icon;
+// // //             const isEven = index % 2 === 0;
+
+// // //             return (
+// // //               <motion.div
+// // //                 key={reason.id}
+// // //                 initial={{ opacity: 0, x: isEven ? -100 : 100 }}
+// // //                 whileInView={{ opacity: 1, x: 0 }}
+// // //                 transition={{ duration: 0.8, delay: 0.2 }}
+// // //                 viewport={{ once: false, amount: 0.3 }}
+// // //                 style={{
+// // //                   display: 'grid',
+// // //                   gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+// // //                   gap: isMobile ? '30px' : '60px',
+// // //                   alignItems: 'center',
+// // //                   flexDirection: isEven || isMobile ? 'row' : 'row-reverse',
+// // //                 }}
+// // //               >
+// // //                 {/* Icon Side */}
+// // //                 <motion.div
+// // //                   whileHover={{ scale: 1.05 }}
+// // //                   style={{
+// // //                     order: isMobile ? 1 : (isEven ? 1 : 2),
+// // //                     position: 'relative',
+// // //                     height: isMobile ? '280px' : '350px',
+// // //                     borderRadius: '24px',
+// // //                     background: `linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, ${reason.color}20 100%)`,
+// // //                     border: `2px solid ${reason.color}40`,
+// // //                     backdropFilter: 'blur(10px)',
+// // //                     display: 'flex',
+// // //                     flexDirection: 'column',
+// // //                     alignItems: 'center',
+// // //                     justifyContent: 'center',
+// // //                     gap: '24px',
+// // //                     padding: '40px',
+// // //                     overflow: 'hidden',
+// // //                     boxShadow: `0 20px 60px ${reason.color}30`,
+// // //                   }}
+// // //                 >
+// // //                   {/* Animated Background Effect */}
+// // //                   <motion.div
+// // //                     animate={{
+// // //                       scale: [1, 1.2, 1],
+// // //                       opacity: [0.2, 0.4, 0.2],
+// // //                     }}
+// // //                     transition={{
+// // //                       duration: 4,
+// // //                       repeat: Infinity,
+// // //                       ease: 'easeInOut',
+// // //                     }}
+// // //                     style={{
+// // //                       position: 'absolute',
+// // //                       width: '200%',
+// // //                       height: '200%',
+// // //                       background: reason.gradient,
+// // //                       borderRadius: '50%',
+// // //                       filter: 'blur(60px)',
+// // //                       zIndex: 0,
+// // //                     }}
+// // //                   />
+
+// // //                   {/* Icon Container */}
+// // //                   <motion.div
+// // //                     animate={{
+// // //                       rotate: [0, 360],
+// // //                     }}
+// // //                     transition={{
+// // //                       duration: 20,
+// // //                       repeat: Infinity,
+// // //                       ease: 'linear',
+// // //                     }}
+// // //                     style={{
+// // //                       position: 'relative',
+// // //                       width: '120px',
+// // //                       height: '120px',
+// // //                       background: `${reason.color}20`,
+// // //                       borderRadius: '50%',
+// // //                       display: 'flex',
+// // //                       alignItems: 'center',
+// // //                       justifyContent: 'center',
+// // //                       border: `3px solid ${reason.color}60`,
+// // //                       boxShadow: `0 0 40px ${reason.color}60, inset 0 0 20px ${reason.color}30`,
+// // //                       zIndex: 1,
+// // //                     }}
+// // //                   >
+// // //                     <motion.div
+// // //                       animate={{
+// // //                         rotate: [0, -360],
+// // //                       }}
+// // //                       transition={{
+// // //                         duration: 20,
+// // //                         repeat: Infinity,
+// // //                         ease: 'linear',
+// // //                       }}
+// // //                     >
+// // //                       <Icon size={48} style={{ color: reason.color }} />
+// // //                     </motion.div>
+// // //                   </motion.div>
+
+// // //                   {/* Features Badges */}
+// // //                   <div
+// // //                     style={{
+// // //                       position: 'relative',
+// // //                       display: 'flex',
+// // //                       gap: '12px',
+// // //                       flexWrap: 'wrap',
+// // //                       justifyContent: 'center',
+// // //                       zIndex: 1,
+// // //                     }}
+// // //                   >
+// // //                     {reason.features.map((feature, idx) => (
+// // //                       <motion.div
+// // //                         key={idx}
+// // //                         initial={{ opacity: 0, scale: 0 }}
+// // //                         whileInView={{ opacity: 1, scale: 1 }}
+// // //                         transition={{ duration: 0.4, delay: 0.4 + idx * 0.1 }}
+// // //                         viewport={{ once: false }}
+// // //                         style={{
+// // //                           padding: '8px 16px',
+// // //                           background: `${reason.color}15`,
+// // //                           border: `1px solid ${reason.color}30`,
+// // //                           borderRadius: '20px',
+// // //                           fontSize: '12px',
+// // //                           color: 'white',
+// // //                           fontWeight: '600',
+// // //                           fontFamily: 'Inter, sans-serif',
+// // //                           boxShadow: `0 0 15px ${reason.color}20`,
+// // //                         }}
+// // //                       >
+// // //                         {feature}
+// // //                       </motion.div>
+// // //                     ))}
+// // //                   </div>
+// // //                 </motion.div>
+
+// // //                 {/* Content Side */}
+// // //                 <motion.div
+// // //                   initial={{ opacity: 0 }}
+// // //                   whileInView={{ opacity: 1 }}
+// // //                   transition={{ duration: 0.8, delay: 0.4 }}
+// // //                   viewport={{ once: false, amount: 0.3 }}
+// // //                   style={{
+// // //                     order: isMobile ? 2 : (isEven ? 2 : 1),
+// // //                     display: 'flex',
+// // //                     flexDirection: 'column',
+// // //                     gap: '20px',
+// // //                   }}
+// // //                 >
+// // //                   {/* Number Badge */}
+// // //                   <motion.div
+// // //                     initial={{ scale: 0 }}
+// // //                     whileInView={{ scale: 1 }}
+// // //                     transition={{ duration: 0.5, type: 'spring' }}
+// // //                     viewport={{ once: false }}
+// // //                     style={{
+// // //                       width: '50px',
+// // //                       height: '50px',
+// // //                       borderRadius: '50%',
+// // //                       background: reason.gradient,
+// // //                       display: 'flex',
+// // //                       alignItems: 'center',
+// // //                       justifyContent: 'center',
+// // //                       fontSize: '24px',
+// // //                       fontWeight: '900',
+// // //                       color: 'white',
+// // //                       fontFamily: 'Poppins, sans-serif',
+// // //                       boxShadow: `0 0 30px ${reason.color}60`,
+// // //                     }}
+// // //                   >
+// // //                     {index + 1}
+// // //                   </motion.div>
+
+// // //                   {/* Title with Character Animation */}
+// // //                   <h3
+// // //                     style={{
+// // //                       fontSize: isMobile ? '28px' : '36px',
+// // //                       fontWeight: '800',
+// // //                       color: 'white',
+// // //                       fontFamily: 'Poppins, sans-serif',
+// // //                       lineHeight: '1.2',
+// // //                       marginBottom: '8px',
+// // //                     }}
+// // //                   >
+// // //                     {reason.title.split('').map((char, idx) => (
+// // //                       <motion.span
+// // //                         key={idx}
+// // //                         initial={{ opacity: 0, y: 20 }}
+// // //                         whileInView={{ opacity: 1, y: 0 }}
+// // //                         transition={{ duration: 0.3, delay: 0.5 + idx * 0.03 }}
+// // //                         viewport={{ once: false }}
+// // //                         style={{ display: 'inline-block' }}
+// // //                       >
+// // //                         {char === ' ' ? '\u00A0' : char}
+// // //                       </motion.span>
+// // //                     ))}
+// // //                   </h3>
+
+// // //                   {/* Description */}
+// // //                   <motion.p
+// // //                     initial={{ opacity: 0, y: 20 }}
+// // //                     whileInView={{ opacity: 1, y: 0 }}
+// // //                     transition={{ duration: 0.6, delay: 0.6 }}
+// // //                     viewport={{ once: false }}
+// // //                     style={{
+// // //                       fontSize: isMobile ? '15px' : '17px',
+// // //                       color: '#D1D5DB',
+// // //                       lineHeight: '1.8',
+// // //                       fontFamily: 'Inter, sans-serif',
+// // //                     }}
+// // //                   >
+// // //                     {reason.description}
+// // //                   </motion.p>
+
+// // //                   {/* Animated Line */}
+// // //                   <motion.div
+// // //                     initial={{ width: 0 }}
+// // //                     whileInView={{ width: '100px' }}
+// // //                     transition={{ duration: 0.8, delay: 0.8 }}
+// // //                     viewport={{ once: false }}
+// // //                     style={{
+// // //                       height: '4px',
+// // //                       background: reason.gradient,
+// // //                       borderRadius: '2px',
+// // //                       boxShadow: `0 0 20px ${reason.color}80`,
+// // //                     }}
+// // //                   />
+// // //                 </motion.div>
+// // //               </motion.div>
+// // //             );
+// // //           })}
+// // //         </div>
+
+// // //         {/* CTA Section */}
+// // //         <motion.div
+// // //           initial={{ opacity: 0, y: 30 }}
+// // //           whileInView={{ opacity: 1, y: 0 }}
+// // //           transition={{ duration: 0.8, delay: 0.4 }}
+// // //           viewport={{ once: false, amount: 0.3 }}
+// // //           style={{
+// // //             textAlign: 'center',
+// // //             marginTop: isMobile ? '60px' : '100px',
+// // //             padding: isMobile ? '40px 24px' : '60px 40px',
+// // //             background: 'linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, rgba(196, 0, 255, 0.1) 100%)',
+// // //             border: '1px solid rgba(0, 102, 255, 0.3)',
+// // //             borderRadius: '24px',
+// // //             backdropFilter: 'blur(10px)',
+// // //             position: 'relative',
+// // //             overflow: 'hidden',
+// // //           }}
+// // //         >
+// // //           {/* Background Glow */}
+// // //           <motion.div
+// // //             animate={{
+// // //               scale: [1, 1.2, 1],
+// // //               opacity: [0.3, 0.5, 0.3],
+// // //             }}
+// // //             transition={{
+// // //               duration: 4,
+// // //               repeat: Infinity,
+// // //               ease: 'easeInOut',
+// // //             }}
+// // //             style={{
+// // //               position: 'absolute',
+// // //               inset: '-50%',
+// // //               background: 'radial-gradient(circle, rgba(0, 102, 255, 0.3) 0%, transparent 70%)',
+// // //               filter: 'blur(60px)',
+// // //             }}
+// // //           />
+
+// // //           <div style={{ position: 'relative', zIndex: 1 }}>
+// // //             <motion.h3
+// // //               style={{
+// // //                 fontSize: isMobile ? '24px' : '32px',
+// // //                 fontWeight: '800',
+// // //                 color: 'white',
+// // //                 fontFamily: 'Poppins, sans-serif',
+// // //                 marginBottom: '16px',
+// // //               }}
+// // //             >
+// // //               Ready to Transform Your Content Journey?
+// // //             </motion.h3>
+// // //             <motion.p
+// // //               style={{
+// // //                 fontSize: isMobile ? '15px' : '18px',
+// // //                 color: '#9CA3AF',
+// // //                 marginBottom: '32px',
+// // //                 fontFamily: 'Inter, sans-serif',
+// // //               }}
+// // //             >
+// // //               Join thousands of creators who are already making their mark
+// // //             </motion.p>
+
+// // //             <motion.a
+// // //               href="#contact"
+// // //               whileHover={{
+// // //                 scale: 1.05,
+// // //                 boxShadow: '0 0 40px rgba(0, 102, 255, 0.8), 0 0 80px rgba(196, 0, 255, 0.6)',
+// // //               }}
+// // //               whileTap={{ scale: 0.95 }}
+// // //               style={{
+// // //                 display: 'inline-flex',
+// // //                 alignItems: 'center',
+// // //                 gap: '12px',
+// // //                 padding: isMobile ? '16px 40px' : '20px 56px',
+// // //                 background: 'linear-gradient(135deg, #0066FF, #8B5CF6, #C400FF)',
+// // //                 color: 'white',
+// // //                 borderRadius: '50px',
+// // //                 fontWeight: '700',
+// // //                 fontSize: isMobile ? '16px' : '18px',
+// // //                 textDecoration: 'none',
+// // //                 fontFamily: 'Poppins, sans-serif',
+// // //                 border: '1px solid rgba(255, 255, 255, 0.1)',
+// // //                 boxShadow: '0 12px 48px rgba(0, 102, 255, 0.4)',
+// // //                 cursor: 'pointer',
+// // //                 position: 'relative',
+// // //                 overflow: 'hidden',
+// // //               }}
+// // //             >
+// // //               <span style={{ position: 'relative', zIndex: 2 }}>Join Now</span>
+// // //               <FiStar size={20} style={{ position: 'relative', zIndex: 2 }} />
+              
+// // //               {/* Shimmer Effect */}
+// // //               <motion.div
+// // //                 animate={{ x: ['-100%', '200%'] }}
+// // //                 transition={{ duration: 2, repeat: Infinity, ease: 'linear', repeatDelay: 1 }}
+// // //                 style={{
+// // //                   position: 'absolute',
+// // //                   top: 0,
+// // //                   left: 0,
+// // //                   width: '50%',
+// // //                   height: '100%',
+// // //                   background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent)',
+// // //                   transform: 'skewX(-20deg)',
+// // //                 }}
+// // //               />
+// // //             </motion.a>
+// // //           </div>
+// // //         </motion.div>
+// // //       </div>
+// // //     </section>
+// // //   );
+// // // };
+
+// // // export default WhyJoin;
+
+
 // // import React, { useState, useEffect } from 'react';
 // // import { motion } from 'framer-motion';
-// // import { FiGlobe, FiTrendingUp, FiUsers, FiZap, FiHeart, FiStar } from 'react-icons/fi';
+// // import { FiGlobe, FiTrendingUp, FiUsers, FiZap, FiStar } from 'react-icons/fi';
 
 // // const WhyJoin = () => {
 // //   const [isMobile, setIsMobile] = useState(false);
@@ -18,16 +618,16 @@
 // //       id: 1,
 // //       icon: FiGlobe,
 // //       title: 'A Global Hub for Content',
-// //       description: 'Join a thriving community of creators from around the world. Connect, collaborate, and grow together in a space where creativity knows no boundaries. Share your stories and learn from the best.',
+// //     //   description: 'Join a thriving community of creators from around the world. Connect, collaborate, and grow together in a space where creativity knows no boundaries.',
 // //       color: '#0066FF',
 // //       gradient: 'linear-gradient(135deg, #0066FF, #00B4FF)',
-// //       features: ['Global Network', 'Cross-border Collaboration', 'Diverse Perspectives'],
+// //       features: ['Global Network', 'Collaboration', 'Diverse Views'],
 // //     },
 // //     {
 // //       id: 2,
 // //       icon: FiTrendingUp,
 // //       title: 'Driving the Future of Content',
-// //       description: 'Be part of the revolution shaping how content is created and consumed. Stay ahead with cutting-edge techniques, trending formats, and innovative storytelling methods that define the next generation of digital media.',
+// //       description: 'Be part of the revolution shaping how content is created and consumed. Stay ahead with cutting-edge techniques and innovative storytelling methods.',
 // //       color: '#8B5CF6',
 // //       gradient: 'linear-gradient(135deg, #8B5CF6, #C084FC)',
 // //       features: ['Innovation First', 'Trend Setting', 'Future Ready'],
@@ -36,10 +636,10 @@
 // //       id: 3,
 // //       icon: FiUsers,
 // //       title: 'An Ecosystem of Support',
-// //       description: 'Experience genuine community backing at every step of your journey. From mentorship to resources, feedback to opportunities—get everything you need to thrive. We grow together, succeed together.',
+// //       description: 'Experience genuine community backing at every step. From mentorship to resources, feedback to opportunities—get everything you need to thrive.',
 // //       color: '#C400FF',
 // //       gradient: 'linear-gradient(135deg, #C400FF, #FF00FF)',
-// //       features: ['Mentorship', '24/7 Support', 'Resource Library'],
+// //       features: ['Mentorship', '24/7 Support', 'Resources'],
 // //     },
 // //   ];
 
@@ -49,7 +649,7 @@
 // //       style={{
 // //         position: 'relative',
 // //         minHeight: 'auto',
-// //         padding: isMobile ? '80px 20px' : '120px 60px',
+// //         padding: isMobile ? '50px 20px' : '80px 40px',
 // //         background: 'linear-gradient(180deg, #0A0F1F 0%, #000000 50%, #0A0F1F 100%)',
 // //         overflow: 'hidden',
 // //       }}
@@ -104,29 +704,29 @@
 // //         />
 
 // //         {/* Floating Particles */}
-// //         {!isMobile && [...Array(12)].map((_, i) => (
+// //         {!isMobile && [...Array(10)].map((_, i) => (
 // //           <motion.div
 // //             key={i}
 // //             animate={{
-// //               y: [0, -100, 0],
-// //               x: [0, Math.random() * 100 - 50, 0],
+// //               y: [0, -80, 0],
+// //               x: [0, Math.random() * 80 - 40, 0],
 // //               opacity: [0.2, 0.5, 0.2],
 // //             }}
 // //             transition={{
-// //               duration: 10 + i * 2,
+// //               duration: 10 + i * 1.5,
 // //               repeat: Infinity,
 // //               delay: i * 0.5,
 // //               ease: 'easeInOut',
 // //             }}
 // //             style={{
 // //               position: 'absolute',
-// //               left: `${5 + i * 8}%`,
+// //               left: `${5 + i * 9}%`,
 // //               top: `${20 + (i % 3) * 20}%`,
-// //               width: '4px',
-// //               height: '4px',
+// //               width: '3px',
+// //               height: '3px',
 // //               background: i % 2 === 0 ? '#0066FF' : '#C400FF',
 // //               borderRadius: '50%',
-// //               boxShadow: `0 0 10px ${i % 2 === 0 ? '#0066FF' : '#C400FF'}`,
+// //               boxShadow: `0 0 8px ${i % 2 === 0 ? '#0066FF' : '#C400FF'}`,
 // //             }}
 // //           />
 // //         ))}
@@ -140,7 +740,7 @@
 // //               backgroundImage:
 // //                 'linear-gradient(rgba(0, 102, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 102, 255, 0.03) 1px, transparent 1px)',
 // //               backgroundSize: '60px 60px',
-// //               opacity: 0.4,
+// //               opacity: 0.3,
 // //             }}
 // //           />
 // //         )}
@@ -163,7 +763,7 @@
 // //           viewport={{ once: false, amount: 0.3 }}
 // //           style={{
 // //             textAlign: 'center',
-// //             marginBottom: isMobile ? '60px' : '100px',
+// //             marginBottom: isMobile ? '40px' : '60px',
 // //           }}
 // //         >
 // //           <motion.div
@@ -175,20 +775,20 @@
 // //               display: 'inline-flex',
 // //               alignItems: 'center',
 // //               gap: '10px',
-// //               padding: '12px 24px',
+// //               padding: '10px 20px',
 // //               background: 'linear-gradient(135deg, rgba(0, 102, 255, 0.15) 0%, rgba(196, 0, 255, 0.15) 100%)',
 // //               border: '1px solid rgba(0, 102, 255, 0.4)',
 // //               borderRadius: '50px',
-// //               marginBottom: '24px',
+// //               marginBottom: '20px',
 // //               boxShadow: '0 0 30px rgba(0, 102, 255, 0.3)',
 // //             }}
 // //           >
-// //             <FiZap style={{ color: '#0066FF' }} size={20} />
+// //             <FiZap style={{ color: '#0066FF' }} size={18} />
 // //             <span
 // //               style={{
 // //                 color: '#0066FF',
 // //                 fontWeight: '600',
-// //                 fontSize: '14px',
+// //                 fontSize: '13px',
 // //                 fontFamily: 'Inter, sans-serif',
 // //                 letterSpacing: '0.5px',
 // //                 textTransform: 'uppercase',
@@ -200,10 +800,10 @@
 
 // //           <motion.h2
 // //             style={{
-// //               fontSize: isMobile ? '36px' : '56px',
+// //               fontSize: isMobile ? '28px' : '44px',
 // //               fontWeight: '900',
 // //               fontFamily: 'Baloo 2, Poppins, sans-serif',
-// //               marginBottom: '20px',
+// //               marginBottom: '16px',
 // //               lineHeight: '1.2',
 // //             }}
 // //           >
@@ -231,15 +831,15 @@
 
 // //           <motion.p
 // //             style={{
-// //               fontSize: isMobile ? '16px' : '20px',
+// //               fontSize: isMobile ? '14px' : '17px',
 // //               color: '#9CA3AF',
 // //               lineHeight: '1.6',
 // //               fontFamily: 'Inter, sans-serif',
-// //               maxWidth: '800px',
+// //               maxWidth: '700px',
 // //               margin: '0 auto',
 // //             }}
 // //           >
-// //             Discover the three pillars that make this community extraordinary and transform content creators into industry leaders
+// //             Three pillars that make this community extraordinary and transform creators into industry leaders
 // //           </motion.p>
 // //         </motion.div>
 
@@ -248,7 +848,7 @@
 // //           style={{
 // //             display: 'flex',
 // //             flexDirection: 'column',
-// //             gap: isMobile ? '40px' : '60px',
+// //             gap: isMobile ? '30px' : '40px',
 // //           }}
 // //         >
 // //           {reasons.map((reason, index) => {
@@ -265,7 +865,7 @@
 // //                 style={{
 // //                   display: 'grid',
 // //                   gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
-// //                   gap: isMobile ? '30px' : '60px',
+// //                   gap: isMobile ? '24px' : '50px',
 // //                   alignItems: 'center',
 // //                   flexDirection: isEven || isMobile ? 'row' : 'row-reverse',
 // //                 }}
@@ -276,8 +876,8 @@
 // //                   style={{
 // //                     order: isMobile ? 1 : (isEven ? 1 : 2),
 // //                     position: 'relative',
-// //                     height: isMobile ? '280px' : '350px',
-// //                     borderRadius: '24px',
+// //                     height: isMobile ? '200px' : '280px',
+// //                     borderRadius: '20px',
 // //                     background: `linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, ${reason.color}20 100%)`,
 // //                     border: `2px solid ${reason.color}40`,
 // //                     backdropFilter: 'blur(10px)',
@@ -285,8 +885,8 @@
 // //                     flexDirection: 'column',
 // //                     alignItems: 'center',
 // //                     justifyContent: 'center',
-// //                     gap: '24px',
-// //                     padding: '40px',
+// //                     gap: '16px',
+// //                     padding: isMobile ? '24px' : '32px',
 // //                     overflow: 'hidden',
 // //                     boxShadow: `0 20px 60px ${reason.color}30`,
 // //                   }}
@@ -325,8 +925,8 @@
 // //                     }}
 // //                     style={{
 // //                       position: 'relative',
-// //                       width: '120px',
-// //                       height: '120px',
+// //                       width: isMobile ? '80px' : '100px',
+// //                       height: isMobile ? '80px' : '100px',
 // //                       background: `${reason.color}20`,
 // //                       borderRadius: '50%',
 // //                       display: 'flex',
@@ -347,7 +947,7 @@
 // //                         ease: 'linear',
 // //                       }}
 // //                     >
-// //                       <Icon size={48} style={{ color: reason.color }} />
+// //                       <Icon size={isMobile ? 32 : 40} style={{ color: reason.color }} />
 // //                     </motion.div>
 // //                   </motion.div>
 
@@ -356,7 +956,7 @@
 // //                     style={{
 // //                       position: 'relative',
 // //                       display: 'flex',
-// //                       gap: '12px',
+// //                       gap: '10px',
 // //                       flexWrap: 'wrap',
 // //                       justifyContent: 'center',
 // //                       zIndex: 1,
@@ -370,11 +970,11 @@
 // //                         transition={{ duration: 0.4, delay: 0.4 + idx * 0.1 }}
 // //                         viewport={{ once: false }}
 // //                         style={{
-// //                           padding: '8px 16px',
+// //                           padding: isMobile ? '6px 12px' : '7px 14px',
 // //                           background: `${reason.color}15`,
 // //                           border: `1px solid ${reason.color}30`,
 // //                           borderRadius: '20px',
-// //                           fontSize: '12px',
+// //                           fontSize: isMobile ? '11px' : '12px',
 // //                           color: 'white',
 // //                           fontWeight: '600',
 // //                           fontFamily: 'Inter, sans-serif',
@@ -397,7 +997,7 @@
 // //                     order: isMobile ? 2 : (isEven ? 2 : 1),
 // //                     display: 'flex',
 // //                     flexDirection: 'column',
-// //                     gap: '20px',
+// //                     gap: '16px',
 // //                   }}
 // //                 >
 // //                   {/* Number Badge */}
@@ -407,14 +1007,14 @@
 // //                     transition={{ duration: 0.5, type: 'spring' }}
 // //                     viewport={{ once: false }}
 // //                     style={{
-// //                       width: '50px',
-// //                       height: '50px',
+// //                       width: isMobile ? '44px' : '50px',
+// //                       height: isMobile ? '44px' : '50px',
 // //                       borderRadius: '50%',
 // //                       background: reason.gradient,
 // //                       display: 'flex',
 // //                       alignItems: 'center',
 // //                       justifyContent: 'center',
-// //                       fontSize: '24px',
+// //                       fontSize: isMobile ? '20px' : '24px',
 // //                       fontWeight: '900',
 // //                       color: 'white',
 // //                       fontFamily: 'Poppins, sans-serif',
@@ -424,15 +1024,15 @@
 // //                     {index + 1}
 // //                   </motion.div>
 
-// //                   {/* Title with Character Animation */}
+// //                   {/* Title */}
 // //                   <h3
 // //                     style={{
-// //                       fontSize: isMobile ? '28px' : '36px',
+// //                       fontSize: isMobile ? '24px' : '30px',
 // //                       fontWeight: '800',
 // //                       color: 'white',
 // //                       fontFamily: 'Poppins, sans-serif',
 // //                       lineHeight: '1.2',
-// //                       marginBottom: '8px',
+// //                       marginBottom: '4px',
 // //                     }}
 // //                   >
 // //                     {reason.title.split('').map((char, idx) => (
@@ -440,7 +1040,7 @@
 // //                         key={idx}
 // //                         initial={{ opacity: 0, y: 20 }}
 // //                         whileInView={{ opacity: 1, y: 0 }}
-// //                         transition={{ duration: 0.3, delay: 0.5 + idx * 0.03 }}
+// //                         transition={{ duration: 0.3, delay: 0.5 + idx * 0.02 }}
 // //                         viewport={{ once: false }}
 // //                         style={{ display: 'inline-block' }}
 // //                       >
@@ -456,9 +1056,9 @@
 // //                     transition={{ duration: 0.6, delay: 0.6 }}
 // //                     viewport={{ once: false }}
 // //                     style={{
-// //                       fontSize: isMobile ? '15px' : '17px',
+// //                       fontSize: isMobile ? '14px' : '16px',
 // //                       color: '#D1D5DB',
-// //                       lineHeight: '1.8',
+// //                       lineHeight: '1.7',
 // //                       fontFamily: 'Inter, sans-serif',
 // //                     }}
 // //                   >
@@ -468,11 +1068,11 @@
 // //                   {/* Animated Line */}
 // //                   <motion.div
 // //                     initial={{ width: 0 }}
-// //                     whileInView={{ width: '100px' }}
+// //                     whileInView={{ width: isMobile ? '80px' : '100px' }}
 // //                     transition={{ duration: 0.8, delay: 0.8 }}
 // //                     viewport={{ once: false }}
 // //                     style={{
-// //                       height: '4px',
+// //                       height: '3px',
 // //                       background: reason.gradient,
 // //                       borderRadius: '2px',
 // //                       boxShadow: `0 0 20px ${reason.color}80`,
@@ -485,111 +1085,7 @@
 // //         </div>
 
 // //         {/* CTA Section */}
-// //         <motion.div
-// //           initial={{ opacity: 0, y: 30 }}
-// //           whileInView={{ opacity: 1, y: 0 }}
-// //           transition={{ duration: 0.8, delay: 0.4 }}
-// //           viewport={{ once: false, amount: 0.3 }}
-// //           style={{
-// //             textAlign: 'center',
-// //             marginTop: isMobile ? '60px' : '100px',
-// //             padding: isMobile ? '40px 24px' : '60px 40px',
-// //             background: 'linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, rgba(196, 0, 255, 0.1) 100%)',
-// //             border: '1px solid rgba(0, 102, 255, 0.3)',
-// //             borderRadius: '24px',
-// //             backdropFilter: 'blur(10px)',
-// //             position: 'relative',
-// //             overflow: 'hidden',
-// //           }}
-// //         >
-// //           {/* Background Glow */}
-// //           <motion.div
-// //             animate={{
-// //               scale: [1, 1.2, 1],
-// //               opacity: [0.3, 0.5, 0.3],
-// //             }}
-// //             transition={{
-// //               duration: 4,
-// //               repeat: Infinity,
-// //               ease: 'easeInOut',
-// //             }}
-// //             style={{
-// //               position: 'absolute',
-// //               inset: '-50%',
-// //               background: 'radial-gradient(circle, rgba(0, 102, 255, 0.3) 0%, transparent 70%)',
-// //               filter: 'blur(60px)',
-// //             }}
-// //           />
-
-// //           <div style={{ position: 'relative', zIndex: 1 }}>
-// //             <motion.h3
-// //               style={{
-// //                 fontSize: isMobile ? '24px' : '32px',
-// //                 fontWeight: '800',
-// //                 color: 'white',
-// //                 fontFamily: 'Poppins, sans-serif',
-// //                 marginBottom: '16px',
-// //               }}
-// //             >
-// //               Ready to Transform Your Content Journey?
-// //             </motion.h3>
-// //             <motion.p
-// //               style={{
-// //                 fontSize: isMobile ? '15px' : '18px',
-// //                 color: '#9CA3AF',
-// //                 marginBottom: '32px',
-// //                 fontFamily: 'Inter, sans-serif',
-// //               }}
-// //             >
-// //               Join thousands of creators who are already making their mark
-// //             </motion.p>
-
-// //             <motion.a
-// //               href="#contact"
-// //               whileHover={{
-// //                 scale: 1.05,
-// //                 boxShadow: '0 0 40px rgba(0, 102, 255, 0.8), 0 0 80px rgba(196, 0, 255, 0.6)',
-// //               }}
-// //               whileTap={{ scale: 0.95 }}
-// //               style={{
-// //                 display: 'inline-flex',
-// //                 alignItems: 'center',
-// //                 gap: '12px',
-// //                 padding: isMobile ? '16px 40px' : '20px 56px',
-// //                 background: 'linear-gradient(135deg, #0066FF, #8B5CF6, #C400FF)',
-// //                 color: 'white',
-// //                 borderRadius: '50px',
-// //                 fontWeight: '700',
-// //                 fontSize: isMobile ? '16px' : '18px',
-// //                 textDecoration: 'none',
-// //                 fontFamily: 'Poppins, sans-serif',
-// //                 border: '1px solid rgba(255, 255, 255, 0.1)',
-// //                 boxShadow: '0 12px 48px rgba(0, 102, 255, 0.4)',
-// //                 cursor: 'pointer',
-// //                 position: 'relative',
-// //                 overflow: 'hidden',
-// //               }}
-// //             >
-// //               <span style={{ position: 'relative', zIndex: 2 }}>Join Now</span>
-// //               <FiStar size={20} style={{ position: 'relative', zIndex: 2 }} />
-              
-// //               {/* Shimmer Effect */}
-// //               <motion.div
-// //                 animate={{ x: ['-100%', '200%'] }}
-// //                 transition={{ duration: 2, repeat: Infinity, ease: 'linear', repeatDelay: 1 }}
-// //                 style={{
-// //                   position: 'absolute',
-// //                   top: 0,
-// //                   left: 0,
-// //                   width: '50%',
-// //                   height: '100%',
-// //                   background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent)',
-// //                   transform: 'skewX(-20deg)',
-// //                 }}
-// //               />
-// //             </motion.a>
-// //           </div>
-// //         </motion.div>
+      
 // //       </div>
 // //     </section>
 // //   );
@@ -598,9 +1094,9 @@
 // // export default WhyJoin;
 
 
-// import React, { useState, useEffect } from 'react';
-// import { motion } from 'framer-motion';
-// import { FiGlobe, FiTrendingUp, FiUsers, FiZap, FiStar } from 'react-icons/fi';
+// import React, { useState, useEffect } from "react";
+// import { motion } from "framer-motion";
+// import { FiCamera, FiCalendar, FiUsers, FiStar, FiGlobe } from "react-icons/fi";
 
 // const WhyJoin = () => {
 //   const [isMobile, setIsMobile] = useState(false);
@@ -608,38 +1104,35 @@
 //   useEffect(() => {
 //     const handleResize = () => setIsMobile(window.innerWidth < 768);
 //     handleResize();
-//     window.addEventListener('resize', handleResize);
-    
-//     return () => window.removeEventListener('resize', handleResize);
+//     window.addEventListener("resize", handleResize);
+//     return () => window.removeEventListener("resize", handleResize);
 //   }, []);
 
-//   const reasons = [
+//   const points = [
 //     {
-//       id: 1,
-//       icon: FiGlobe,
-//       title: 'A Global Hub for Content',
-//     //   description: 'Join a thriving community of creators from around the world. Connect, collaborate, and grow together in a space where creativity knows no boundaries.',
-//       color: '#0066FF',
-//       gradient: 'linear-gradient(135deg, #0066FF, #00B4FF)',
-//       features: ['Global Network', 'Collaboration', 'Diverse Views'],
+//       icon: FiCamera,
+//       title: "Monthly workshops on shooting, editing & storytelling",
+//       color: "#0066FF",
 //     },
 //     {
-//       id: 2,
-//       icon: FiTrendingUp,
-//       title: 'Driving the Future of Content',
-//       description: 'Be part of the revolution shaping how content is created and consumed. Stay ahead with cutting-edge techniques and innovative storytelling methods.',
-//       color: '#8B5CF6',
-//       gradient: 'linear-gradient(135deg, #8B5CF6, #C084FC)',
-//       features: ['Innovation First', 'Trend Setting', 'Future Ready'],
+//       icon: FiCalendar,
+//       title: "Weekly campus reels & event coverage",
+//       color: "#8B5CF6",
 //     },
 //     {
-//       id: 3,
+//       icon: FiStar,
+//       title: "Creator of the Month spotlight",
+//       color: "#C400FF",
+//     },
+//     {
 //       icon: FiUsers,
-//       title: 'An Ecosystem of Support',
-//       description: 'Experience genuine community backing at every step. From mentorship to resources, feedback to opportunities—get everything you need to thrive.',
-//       color: '#C400FF',
-//       gradient: 'linear-gradient(135deg, #C400FF, #FF00FF)',
-//       features: ['Mentorship', '24/7 Support', 'Resources'],
+//       title: "Collaborations with all clubs",
+//       color: "#00B4FF",
+//     },
+//     {
+//       icon: FiGlobe,
+//       title: "Building campus digital presence",
+//       color: "#FF00FF",
 //     },
 //   ];
 
@@ -647,445 +1140,156 @@
 //     <section
 //       id="whyjoin"
 //       style={{
-//         position: 'relative',
-//         minHeight: 'auto',
-//         padding: isMobile ? '50px 20px' : '80px 40px',
-//         background: 'linear-gradient(180deg, #0A0F1F 0%, #000000 50%, #0A0F1F 100%)',
-//         overflow: 'hidden',
+//         padding: isMobile ? "50px 20px" : "80px 40px",
+//         background: "linear-gradient(180deg, #0A0F1F, #000000, #0A0F1F)",
 //       }}
 //     >
-//       {/* Background Effects */}
-//       <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: 0 }}>
-//         {/* Animated Gradient Orbs */}
-//         <motion.div
+//       {/* Header */}
+//       <motion.div
+//         initial={{ opacity: 0, y: 20 }}
+//         whileInView={{ opacity: 1, y: 0 }}
+//         transition={{ duration: 0.8 }}
+//         viewport={{ once: true }}
+//         style={{ textAlign: "center", marginBottom: "50px" }}
+//       >
+//         <motion.h2
 //           animate={{
-//             scale: [1, 1.3, 1],
-//             x: [0, 60, 0],
-//             y: [0, -40, 0],
+//             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
 //           }}
 //           transition={{
-//             duration: 20,
+//             duration: 6,
 //             repeat: Infinity,
-//             ease: 'easeInOut',
+//             ease: "linear",
 //           }}
 //           style={{
-//             position: 'absolute',
-//             top: '10%',
-//             left: '-10%',
-//             width: isMobile ? '400px' : '700px',
-//             height: isMobile ? '400px' : '700px',
-//             background: 'radial-gradient(circle, rgba(0, 102, 255, 0.2) 0%, transparent 70%)',
-//             borderRadius: '50%',
-//             filter: 'blur(100px)',
+//             fontSize: isMobile ? "28px" : "42px",
+//             fontWeight: "900",
+//             background:
+//               "linear-gradient(90deg,#0066FF,#8B5CF6,#C400FF,#8B5CF6,#0066FF)",
+//             backgroundSize: "200% auto",
+//             WebkitBackgroundClip: "text",
+//             WebkitTextFillColor: "transparent",
 //           }}
-//         />
+//         >
+//           Why Join Us?
+//         </motion.h2>
 
-//         <motion.div
-//           animate={{
-//             scale: [1.3, 1, 1.3],
-//             x: [0, -60, 0],
-//             y: [0, 40, 0],
-//           }}
-//           transition={{
-//             duration: 25,
-//             repeat: Infinity,
-//             ease: 'easeInOut',
-//           }}
+//         <motion.p
+//           initial={{ opacity: 0 }}
+//           whileInView={{ opacity: 1 }}
+//           transition={{ delay: 0.4 }}
 //           style={{
-//             position: 'absolute',
-//             bottom: '10%',
-//             right: '-10%',
-//             width: isMobile ? '450px' : '800px',
-//             height: isMobile ? '450px' : '800px',
-//             background: 'radial-gradient(circle, rgba(196, 0, 255, 0.15) 0%, transparent 70%)',
-//             borderRadius: '50%',
-//             filter: 'blur(120px)',
+//             fontSize: "16px",
+//             color: "#B0B3C0",
+//             marginTop: "10px",
+//             maxWidth: "650px",
+//             lineHeight: "1.6",
+//             margin: "0 auto",
 //           }}
-//         />
+//         >
+//           “Let’s build a creative family where every student gets a chance to grow.”
+//         </motion.p>
+//       </motion.div>
 
-//         {/* Floating Particles */}
-//         {!isMobile && [...Array(10)].map((_, i) => (
-//           <motion.div
-//             key={i}
-//             animate={{
-//               y: [0, -80, 0],
-//               x: [0, Math.random() * 80 - 40, 0],
-//               opacity: [0.2, 0.5, 0.2],
-//             }}
-//             transition={{
-//               duration: 10 + i * 1.5,
-//               repeat: Infinity,
-//               delay: i * 0.5,
-//               ease: 'easeInOut',
-//             }}
-//             style={{
-//               position: 'absolute',
-//               left: `${5 + i * 9}%`,
-//               top: `${20 + (i % 3) * 20}%`,
-//               width: '3px',
-//               height: '3px',
-//               background: i % 2 === 0 ? '#0066FF' : '#C400FF',
-//               borderRadius: '50%',
-//               boxShadow: `0 0 8px ${i % 2 === 0 ? '#0066FF' : '#C400FF'}`,
-//             }}
-//           />
-//         ))}
-
-//         {/* Grid Pattern */}
-//         {!isMobile && (
-//           <div
-//             style={{
-//               position: 'absolute',
-//               inset: 0,
-//               backgroundImage:
-//                 'linear-gradient(rgba(0, 102, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 102, 255, 0.03) 1px, transparent 1px)',
-//               backgroundSize: '60px 60px',
-//               opacity: 0.3,
-//             }}
-//           />
-//         )}
-//       </div>
-
-//       {/* Main Container */}
+//       {/* Cards */}
 //       <div
 //         style={{
-//           position: 'relative',
-//           maxWidth: '1400px',
-//           margin: '0 auto',
-//           zIndex: 2,
+//           display: "flex",
+//           flexDirection: "column",
+//           gap: "25px",
+//           maxWidth: "1000px",
+//           margin: "0 auto",
 //         }}
 //       >
-//         {/* Header */}
-//         <motion.div
-//           initial={{ opacity: 0, y: 30 }}
-//           whileInView={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.8 }}
-//           viewport={{ once: false, amount: 0.3 }}
-//           style={{
-//             textAlign: 'center',
-//             marginBottom: isMobile ? '40px' : '60px',
-//           }}
-//         >
-//           <motion.div
-//             initial={{ scale: 0 }}
-//             whileInView={{ scale: 1 }}
-//             transition={{ duration: 0.6, type: 'spring' }}
-//             viewport={{ once: false }}
-//             style={{
-//               display: 'inline-flex',
-//               alignItems: 'center',
-//               gap: '10px',
-//               padding: '10px 20px',
-//               background: 'linear-gradient(135deg, rgba(0, 102, 255, 0.15) 0%, rgba(196, 0, 255, 0.15) 100%)',
-//               border: '1px solid rgba(0, 102, 255, 0.4)',
-//               borderRadius: '50px',
-//               marginBottom: '20px',
-//               boxShadow: '0 0 30px rgba(0, 102, 255, 0.3)',
-//             }}
-//           >
-//             <FiZap style={{ color: '#0066FF' }} size={18} />
-//             <span
-//               style={{
-//                 color: '#0066FF',
-//                 fontWeight: '600',
-//                 fontSize: '13px',
-//                 fontFamily: 'Inter, sans-serif',
-//                 letterSpacing: '0.5px',
-//                 textTransform: 'uppercase',
-//               }}
-//             >
-//               Why Choose Me
-//             </span>
-//           </motion.div>
+//         {points.map((item, index) => {
+//           const Icon = item.icon;
 
-//           <motion.h2
-//             style={{
-//               fontSize: isMobile ? '28px' : '44px',
-//               fontWeight: '900',
-//               fontFamily: 'Baloo 2, Poppins, sans-serif',
-//               marginBottom: '16px',
-//               lineHeight: '1.2',
-//             }}
-//           >
-//             <motion.span
-//               animate={{
-//                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-//               }}
-//               transition={{
-//                 duration: 5,
-//                 repeat: Infinity,
-//                 ease: 'linear',
+//           return (
+//             <motion.div
+//               key={index}
+//               initial={{ opacity: 0, x: -40 }}
+//               whileInView={{ opacity: 1, x: 0 }}
+//               transition={{ duration: 0.6, delay: index * 0.15 }}
+//               viewport={{ once: true }}
+//               whileHover={{
+//                 scale: 1.03,
+//                 y: -6,
+//                 boxShadow: `0 10px 30px ${item.color}40`,
 //               }}
 //               style={{
-//                 background: 'linear-gradient(90deg, #0066FF 0%, #8B5CF6 25%, #C400FF 50%, #8B5CF6 75%, #0066FF 100%)',
-//                 backgroundSize: '200% auto',
-//                 WebkitBackgroundClip: 'text',
-//                 WebkitTextFillColor: 'transparent',
-//                 backgroundClip: 'text',
-//                 display: 'inline-block',
+//                 display: "flex",
+//                 alignItems: "center",
+//                 gap: "20px",
+//                 padding: "22px",
+//                 borderRadius: "18px",
+//                 background: "rgba(255,255,255,0.03)",
+//                 border: `1px solid ${item.color}40`,
+//                 backdropFilter: "blur(10px)",
+//                 transition: "0.3s ease",
+//                 cursor: "default",
 //               }}
 //             >
-//               Why Join the Journey?
-//             </motion.span>
-//           </motion.h2>
-
-//           <motion.p
-//             style={{
-//               fontSize: isMobile ? '14px' : '17px',
-//               color: '#9CA3AF',
-//               lineHeight: '1.6',
-//               fontFamily: 'Inter, sans-serif',
-//               maxWidth: '700px',
-//               margin: '0 auto',
-//             }}
-//           >
-//             Three pillars that make this community extraordinary and transform creators into industry leaders
-//           </motion.p>
-//         </motion.div>
-
-//         {/* Reasons Grid */}
-//         <div
-//           style={{
-//             display: 'flex',
-//             flexDirection: 'column',
-//             gap: isMobile ? '30px' : '40px',
-//           }}
-//         >
-//           {reasons.map((reason, index) => {
-//             const Icon = reason.icon;
-//             const isEven = index % 2 === 0;
-
-//             return (
 //               <motion.div
-//                 key={reason.id}
-//                 initial={{ opacity: 0, x: isEven ? -100 : 100 }}
-//                 whileInView={{ opacity: 1, x: 0 }}
-//                 transition={{ duration: 0.8, delay: 0.2 }}
-//                 viewport={{ once: false, amount: 0.3 }}
+//                 animate={{
+//                   boxShadow: [
+//                     `0 0 10px ${item.color}40`,
+//                     `0 0 20px ${item.color}70`,
+//                     `0 0 10px ${item.color}40`,
+//                   ],
+//                 }}
+//                 transition={{
+//                   duration: 2,
+//                   repeat: Infinity,
+//                   ease: "easeInOut",
+//                 }}
 //                 style={{
-//                   display: 'grid',
-//                   gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
-//                   gap: isMobile ? '24px' : '50px',
-//                   alignItems: 'center',
-//                   flexDirection: isEven || isMobile ? 'row' : 'row-reverse',
+//                   width: "55px",
+//                   height: "55px",
+//                   borderRadius: "12px",
+//                   background: `${item.color}15`,
+//                   border: `2px solid ${item.color}70`,
+//                   display: "flex",
+//                   alignItems: "center",
+//                   justifyContent: "center",
 //                 }}
 //               >
-//                 {/* Icon Side */}
 //                 <motion.div
-//                   whileHover={{ scale: 1.05 }}
-//                   style={{
-//                     order: isMobile ? 1 : (isEven ? 1 : 2),
-//                     position: 'relative',
-//                     height: isMobile ? '200px' : '280px',
-//                     borderRadius: '20px',
-//                     background: `linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, ${reason.color}20 100%)`,
-//                     border: `2px solid ${reason.color}40`,
-//                     backdropFilter: 'blur(10px)',
-//                     display: 'flex',
-//                     flexDirection: 'column',
-//                     alignItems: 'center',
-//                     justifyContent: 'center',
-//                     gap: '16px',
-//                     padding: isMobile ? '24px' : '32px',
-//                     overflow: 'hidden',
-//                     boxShadow: `0 20px 60px ${reason.color}30`,
-//                   }}
+//                   animate={{ scale: [1, 1.15, 1] }}
+//                   transition={{ duration: 2, repeat: Infinity }}
 //                 >
-//                   {/* Animated Background Effect */}
-//                   <motion.div
-//                     animate={{
-//                       scale: [1, 1.2, 1],
-//                       opacity: [0.2, 0.4, 0.2],
-//                     }}
-//                     transition={{
-//                       duration: 4,
-//                       repeat: Infinity,
-//                       ease: 'easeInOut',
-//                     }}
-//                     style={{
-//                       position: 'absolute',
-//                       width: '200%',
-//                       height: '200%',
-//                       background: reason.gradient,
-//                       borderRadius: '50%',
-//                       filter: 'blur(60px)',
-//                       zIndex: 0,
-//                     }}
-//                   />
-
-//                   {/* Icon Container */}
-//                   <motion.div
-//                     animate={{
-//                       rotate: [0, 360],
-//                     }}
-//                     transition={{
-//                       duration: 20,
-//                       repeat: Infinity,
-//                       ease: 'linear',
-//                     }}
-//                     style={{
-//                       position: 'relative',
-//                       width: isMobile ? '80px' : '100px',
-//                       height: isMobile ? '80px' : '100px',
-//                       background: `${reason.color}20`,
-//                       borderRadius: '50%',
-//                       display: 'flex',
-//                       alignItems: 'center',
-//                       justifyContent: 'center',
-//                       border: `3px solid ${reason.color}60`,
-//                       boxShadow: `0 0 40px ${reason.color}60, inset 0 0 20px ${reason.color}30`,
-//                       zIndex: 1,
-//                     }}
-//                   >
-//                     <motion.div
-//                       animate={{
-//                         rotate: [0, -360],
-//                       }}
-//                       transition={{
-//                         duration: 20,
-//                         repeat: Infinity,
-//                         ease: 'linear',
-//                       }}
-//                     >
-//                       <Icon size={isMobile ? 32 : 40} style={{ color: reason.color }} />
-//                     </motion.div>
-//                   </motion.div>
-
-//                   {/* Features Badges */}
-//                   <div
-//                     style={{
-//                       position: 'relative',
-//                       display: 'flex',
-//                       gap: '10px',
-//                       flexWrap: 'wrap',
-//                       justifyContent: 'center',
-//                       zIndex: 1,
-//                     }}
-//                   >
-//                     {reason.features.map((feature, idx) => (
-//                       <motion.div
-//                         key={idx}
-//                         initial={{ opacity: 0, scale: 0 }}
-//                         whileInView={{ opacity: 1, scale: 1 }}
-//                         transition={{ duration: 0.4, delay: 0.4 + idx * 0.1 }}
-//                         viewport={{ once: false }}
-//                         style={{
-//                           padding: isMobile ? '6px 12px' : '7px 14px',
-//                           background: `${reason.color}15`,
-//                           border: `1px solid ${reason.color}30`,
-//                           borderRadius: '20px',
-//                           fontSize: isMobile ? '11px' : '12px',
-//                           color: 'white',
-//                           fontWeight: '600',
-//                           fontFamily: 'Inter, sans-serif',
-//                           boxShadow: `0 0 15px ${reason.color}20`,
-//                         }}
-//                       >
-//                         {feature}
-//                       </motion.div>
-//                     ))}
-//                   </div>
-//                 </motion.div>
-
-//                 {/* Content Side */}
-//                 <motion.div
-//                   initial={{ opacity: 0 }}
-//                   whileInView={{ opacity: 1 }}
-//                   transition={{ duration: 0.8, delay: 0.4 }}
-//                   viewport={{ once: false, amount: 0.3 }}
-//                   style={{
-//                     order: isMobile ? 2 : (isEven ? 2 : 1),
-//                     display: 'flex',
-//                     flexDirection: 'column',
-//                     gap: '16px',
-//                   }}
-//                 >
-//                   {/* Number Badge */}
-//                   <motion.div
-//                     initial={{ scale: 0 }}
-//                     whileInView={{ scale: 1 }}
-//                     transition={{ duration: 0.5, type: 'spring' }}
-//                     viewport={{ once: false }}
-//                     style={{
-//                       width: isMobile ? '44px' : '50px',
-//                       height: isMobile ? '44px' : '50px',
-//                       borderRadius: '50%',
-//                       background: reason.gradient,
-//                       display: 'flex',
-//                       alignItems: 'center',
-//                       justifyContent: 'center',
-//                       fontSize: isMobile ? '20px' : '24px',
-//                       fontWeight: '900',
-//                       color: 'white',
-//                       fontFamily: 'Poppins, sans-serif',
-//                       boxShadow: `0 0 30px ${reason.color}60`,
-//                     }}
-//                   >
-//                     {index + 1}
-//                   </motion.div>
-
-//                   {/* Title */}
-//                   <h3
-//                     style={{
-//                       fontSize: isMobile ? '24px' : '30px',
-//                       fontWeight: '800',
-//                       color: 'white',
-//                       fontFamily: 'Poppins, sans-serif',
-//                       lineHeight: '1.2',
-//                       marginBottom: '4px',
-//                     }}
-//                   >
-//                     {reason.title.split('').map((char, idx) => (
-//                       <motion.span
-//                         key={idx}
-//                         initial={{ opacity: 0, y: 20 }}
-//                         whileInView={{ opacity: 1, y: 0 }}
-//                         transition={{ duration: 0.3, delay: 0.5 + idx * 0.02 }}
-//                         viewport={{ once: false }}
-//                         style={{ display: 'inline-block' }}
-//                       >
-//                         {char === ' ' ? '\u00A0' : char}
-//                       </motion.span>
-//                     ))}
-//                   </h3>
-
-//                   {/* Description */}
-//                   <motion.p
-//                     initial={{ opacity: 0, y: 20 }}
-//                     whileInView={{ opacity: 1, y: 0 }}
-//                     transition={{ duration: 0.6, delay: 0.6 }}
-//                     viewport={{ once: false }}
-//                     style={{
-//                       fontSize: isMobile ? '14px' : '16px',
-//                       color: '#D1D5DB',
-//                       lineHeight: '1.7',
-//                       fontFamily: 'Inter, sans-serif',
-//                     }}
-//                   >
-//                     {reason.description}
-//                   </motion.p>
-
-//                   {/* Animated Line */}
-//                   <motion.div
-//                     initial={{ width: 0 }}
-//                     whileInView={{ width: isMobile ? '80px' : '100px' }}
-//                     transition={{ duration: 0.8, delay: 0.8 }}
-//                     viewport={{ once: false }}
-//                     style={{
-//                       height: '3px',
-//                       background: reason.gradient,
-//                       borderRadius: '2px',
-//                       boxShadow: `0 0 20px ${reason.color}80`,
-//                     }}
-//                   />
+//                   <Icon size={26} color={item.color} />
 //                 </motion.div>
 //               </motion.div>
-//             );
-//           })}
-//         </div>
 
-//         {/* CTA Section */}
-      
+//               <div style={{ flex: 1 }}>
+//                 <h3
+//                   style={{
+//                     color: "white",
+//                     fontSize: isMobile ? "16px" : "20px",
+//                     fontWeight: "600",
+//                     lineHeight: "1.4",
+//                     marginBottom: "6px",
+//                   }}
+//                 >
+//                   {item.title}
+//                 </h3>
+
+//                 {/* Animated line */}
+//                 <motion.div
+//                   initial={{ width: 0 }}
+//                   whileInView={{ width: "120px" }}
+//                   transition={{ duration: 0.8 }}
+//                   viewport={{ once: true }}
+//                   style={{
+//                     height: "3px",
+//                     borderRadius: "2px",
+//                     background: item.color,
+//                   }}
+//                 />
+//               </div>
+//             </motion.div>
+//           );
+//         })}
 //       </div>
 //     </section>
 //   );
@@ -1093,10 +1297,9 @@
 
 // export default WhyJoin;
 
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
-import { FiCamera, FiCalendar, FiUsers, FiStar, FiGlobe } from "react-icons/fi";
+import { FiCamera, FiCalendar, FiUsers, FiStar, FiGlobe, FiZap } from "react-icons/fi";
 
 const WhyJoin = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -1108,192 +1311,517 @@ const WhyJoin = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const points = [
+  const points = useMemo(() => [
     {
       icon: FiCamera,
       title: "Monthly workshops on shooting, editing & storytelling",
+      description: "Learn professional techniques from industry experts",
       color: "#0066FF",
     },
     {
       icon: FiCalendar,
       title: "Weekly campus reels & event coverage",
+      description: "Build your portfolio with real-world projects",
       color: "#8B5CF6",
     },
     {
       icon: FiStar,
       title: "Creator of the Month spotlight",
+      description: "Get recognized and showcase your best work",
       color: "#C400FF",
     },
     {
       icon: FiUsers,
       title: "Collaborations with all clubs",
+      description: "Network and create amazing content together",
       color: "#00B4FF",
     },
     {
       icon: FiGlobe,
       title: "Building campus digital presence",
+      description: "Shape the future of campus storytelling",
       color: "#FF00FF",
     },
-  ];
+  ], []);
+
+  const PointCard = useCallback(({ item, index }) => {
+    const Icon = item.icon;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, x: -60, y: 20 }}
+        whileInView={{ opacity: 1, x: 0, y: 0 }}
+        transition={{ 
+          duration: 0.6, 
+          delay: index * 0.1,
+          ease: [0.4, 0, 0.2, 1]
+        }}
+        viewport={{ once: true, amount: 0.3 }}
+        whileHover={{
+          scale: 1.02,
+          x: 8,
+          transition: { duration: 0.3 }
+        }}
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          gap: "20px",
+          padding: isMobile ? "20px" : "26px",
+          borderRadius: "20px",
+          background: `linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, ${item.color}08 100%)`,
+          border: `2px solid ${item.color}35`,
+          backdropFilter: "blur(15px)",
+          cursor: "pointer",
+          position: "relative",
+          overflow: "hidden",
+          boxShadow: `0 8px 32px ${item.color}15, inset 0 1px 0 rgba(255,255,255,0.1)`,
+        }}
+      >
+        {/* Animated hover glow */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileHover={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: `radial-gradient(circle at left, ${item.color}15 0%, transparent 60%)`,
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Subtle grid overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `linear-gradient(${item.color}05 1px, transparent 1px), linear-gradient(90deg, ${item.color}05 1px, transparent 1px)`,
+            backgroundSize: "20px 20px",
+            opacity: 0.3,
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Icon Container with pulse effect */}
+        <motion.div
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          transition={{ duration: 0.3 }}
+          style={{
+            flexShrink: 0,
+            width: isMobile ? "56px" : "64px",
+            height: isMobile ? "56px" : "64px",
+            borderRadius: "14px",
+            background: `${item.color}12`,
+            border: `2px solid ${item.color}50`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+            boxShadow: `0 4px 20px ${item.color}25`,
+          }}
+        >
+          {/* Pulsing ring */}
+          <motion.div
+            animate={{
+              scale: [1, 1.5, 1],
+              opacity: [0.6, 0, 0.6],
+            }}
+            transition={{
+              duration: 2.5,
+              repeat: Infinity,
+              ease: "easeOut",
+            }}
+            style={{
+              position: "absolute",
+              inset: -4,
+              border: `2px solid ${item.color}`,
+              borderRadius: "14px",
+              pointerEvents: "none",
+            }}
+          />
+
+          <motion.div
+            animate={{ 
+              scale: [1, 1.1, 1],
+              rotate: [0, 5, 0]
+            }}
+            transition={{ 
+              duration: 2, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <Icon size={isMobile ? 26 : 30} color={item.color} style={{ filter: `drop-shadow(0 2px 8px ${item.color}60)` }} />
+          </motion.div>
+        </motion.div>
+
+        {/* Content */}
+        <div style={{ flex: 1, position: "relative", zIndex: 1 }}>
+          <h3
+            style={{
+              color: "white",
+              fontSize: isMobile ? "17px" : "20px",
+              fontWeight: "700",
+              lineHeight: "1.4",
+              marginBottom: "8px",
+              fontFamily: "Poppins, sans-serif",
+              textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+            }}
+          >
+            {item.title}
+          </h3>
+
+          <p
+            style={{
+              color: "#9CA3AF",
+              fontSize: isMobile ? "13px" : "14px",
+              lineHeight: "1.6",
+              fontFamily: "Inter, sans-serif",
+              marginBottom: "12px",
+            }}
+          >
+            {item.description}
+          </p>
+
+          {/* Animated line */}
+          <motion.div
+            initial={{ width: 0, opacity: 0 }}
+            whileInView={{ width: "100px", opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 + index * 0.1, ease: "easeOut" }}
+            viewport={{ once: true }}
+            style={{
+              height: "3px",
+              borderRadius: "2px",
+              background: `linear-gradient(90deg, ${item.color}, transparent)`,
+              boxShadow: `0 0 15px ${item.color}70`,
+            }}
+          />
+        </div>
+
+        {/* Number badge */}
+        <motion.div
+          initial={{ scale: 0, rotate: -180 }}
+          whileInView={{ scale: 1, rotate: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 + index * 0.1, type: "spring" }}
+          viewport={{ once: true }}
+          style={{
+            position: "absolute",
+            top: isMobile ? "16px" : "20px",
+            right: isMobile ? "16px" : "20px",
+            width: isMobile ? "32px" : "36px",
+            height: isMobile ? "32px" : "36px",
+            borderRadius: "50%",
+            background: `linear-gradient(135deg, ${item.color}, ${item.color}CC)`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: isMobile ? "14px" : "16px",
+            fontWeight: "800",
+            color: "white",
+            fontFamily: "Poppins, sans-serif",
+            boxShadow: `0 4px 15px ${item.color}50`,
+            zIndex: 2,
+          }}
+        >
+          {index + 1}
+        </motion.div>
+      </motion.div>
+    );
+  }, [isMobile]);
 
   return (
     <section
       id="whyjoin"
       style={{
-        padding: isMobile ? "50px 20px" : "80px 40px",
-        background: "linear-gradient(180deg, #0A0F1F, #000000, #0A0F1F)",
+        position: "relative",
+        padding: isMobile ? "80px 20px" : "120px 60px",
+        background: "linear-gradient(180deg, #0A0F1F 0%, #000000 50%, #0A0F1F 100%)",
+        overflow: "hidden",
       }}
     >
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        style={{ textAlign: "center", marginBottom: "50px" }}
-      >
-        <motion.h2
+      {/* Optimized Background Effects */}
+      <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 0 }}>
+        {/* Gradient Orbs */}
+        <motion.div
           animate={{
-            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            scale: [1, 1.2, 1],
+            x: [0, 50, 0],
+            y: [0, -30, 0],
           }}
           transition={{
-            duration: 6,
+            duration: 22,
             repeat: Infinity,
-            ease: "linear",
+            ease: "easeInOut",
           }}
           style={{
-            fontSize: isMobile ? "28px" : "42px",
-            fontWeight: "900",
-            background:
-              "linear-gradient(90deg,#0066FF,#8B5CF6,#C400FF,#8B5CF6,#0066FF)",
-            backgroundSize: "200% auto",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
+            position: "absolute",
+            top: "10%",
+            left: "-10%",
+            width: isMobile ? "400px" : "700px",
+            height: isMobile ? "400px" : "700px",
+            background: "radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, transparent 70%)",
+            borderRadius: "50%",
+            filter: "blur(100px)",
+            willChange: "transform",
           }}
-        >
-          Why Join Us?
-        </motion.h2>
+        />
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
+        <motion.div
+          animate={{
+            scale: [1.2, 1, 1.2],
+            x: [0, -50, 0],
+            y: [0, 30, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
           style={{
-            fontSize: "16px",
-            color: "#B0B3C0",
-            marginTop: "10px",
-            maxWidth: "650px",
-            lineHeight: "1.6",
-            margin: "0 auto",
+            position: "absolute",
+            bottom: "10%",
+            right: "-10%",
+            width: isMobile ? "450px" : "800px",
+            height: isMobile ? "450px" : "800px",
+            background: "radial-gradient(circle, rgba(196, 0, 255, 0.12) 0%, transparent 70%)",
+            borderRadius: "50%",
+            filter: "blur(120px)",
+            willChange: "transform",
           }}
-        >
-          “Let’s build a creative family where every student gets a chance to grow.”
-        </motion.p>
-      </motion.div>
+        />
 
-      {/* Cards */}
+        {/* Floating Particles - Optimized */}
+        {!isMobile && [...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -70, 0],
+              x: [0, Math.random() * 60 - 30, 0],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: 8 + i * 1.5,
+              repeat: Infinity,
+              delay: i * 0.6,
+              ease: "easeInOut",
+            }}
+            style={{
+              position: "absolute",
+              left: `${10 + i * 11}%`,
+              top: `${25 + (i % 3) * 20}%`,
+              width: "3px",
+              height: "3px",
+              background: i % 2 === 0 ? "#0066FF" : "#C400FF",
+              borderRadius: "50%",
+              boxShadow: `0 0 10px ${i % 2 === 0 ? "#0066FF" : "#C400FF"}`,
+            }}
+          />
+        ))}
+
+        {/* Grid Pattern */}
+        {!isMobile && (
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage:
+                "linear-gradient(rgba(0, 102, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 102, 255, 0.02) 1px, transparent 1px)",
+              backgroundSize: "60px 60px",
+              opacity: 0.4,
+            }}
+          />
+        )}
+      </div>
+
+      {/* Main Container */}
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "25px",
-          maxWidth: "1000px",
+          position: "relative",
+          maxWidth: "1200px",
           margin: "0 auto",
+          zIndex: 2,
         }}
       >
-        {points.map((item, index) => {
-          const Icon = item.icon;
-
-          return (
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          style={{
+            textAlign: "center",
+            marginBottom: isMobile ? "60px" : "80px",
+          }}
+        >
+          {/* Badge */}
+          <motion.div
+            initial={{ scale: 0, rotate: -10 }}
+            whileInView={{ scale: 1, rotate: 0 }}
+            transition={{ duration: 0.6, type: "spring", bounce: 0.5 }}
+            viewport={{ once: true }}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              padding: "12px 24px",
+              background: "linear-gradient(135deg, rgba(0, 102, 255, 0.15) 0%, rgba(196, 0, 255, 0.15) 100%)",
+              border: "1px solid rgba(0, 102, 255, 0.5)",
+              borderRadius: "50px",
+              marginBottom: "24px",
+              boxShadow: "0 0 30px rgba(0, 102, 255, 0.3), inset 0 1px 0 rgba(255,255,255,0.2)",
+            }}
+          >
             <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              viewport={{ once: true }}
-              whileHover={{
-                scale: 1.03,
-                y: -6,
-                boxShadow: `0 10px 30px ${item.color}40`,
-              }}
+              animate={{ rotate: [0, 15, -15, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <FiZap style={{ color: "#0066FF" }} size={20} />
+            </motion.div>
+            <span
               style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "20px",
-                padding: "22px",
-                borderRadius: "18px",
-                background: "rgba(255,255,255,0.03)",
-                border: `1px solid ${item.color}40`,
-                backdropFilter: "blur(10px)",
-                transition: "0.3s ease",
-                cursor: "default",
+                color: "#0066FF",
+                fontWeight: "600",
+                fontSize: "14px",
+                fontFamily: "Inter, sans-serif",
+                letterSpacing: "0.5px",
+                textTransform: "uppercase",
               }}
             >
-              <motion.div
-                animate={{
-                  boxShadow: [
-                    `0 0 10px ${item.color}40`,
-                    `0 0 20px ${item.color}70`,
-                    `0 0 10px ${item.color}40`,
-                  ],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                style={{
-                  width: "55px",
-                  height: "55px",
-                  borderRadius: "12px",
-                  background: `${item.color}15`,
-                  border: `2px solid ${item.color}70`,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <motion.div
-                  animate={{ scale: [1, 1.15, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <Icon size={26} color={item.color} />
-                </motion.div>
-              </motion.div>
+              Why Choose Us
+            </span>
+          </motion.div>
 
-              <div style={{ flex: 1 }}>
-                <h3
-                  style={{
-                    color: "white",
-                    fontSize: isMobile ? "16px" : "20px",
-                    fontWeight: "600",
-                    lineHeight: "1.4",
-                    marginBottom: "6px",
-                  }}
-                >
-                  {item.title}
-                </h3>
+          {/* Animated Title */}
+          <h2
+            style={{
+              fontSize: isMobile ? "36px" : "52px",
+              fontWeight: "900",
+              fontFamily: "Baloo 2, Poppins, sans-serif",
+              marginBottom: "20px",
+              lineHeight: "1.2",
+            }}
+          >
+            <motion.span
+              animate={{
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              style={{
+                background: "linear-gradient(90deg, #0066FF 0%, #8B5CF6 25%, #C400FF 50%, #8B5CF6 75%, #0066FF 100%)",
+                backgroundSize: "200% auto",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                display: "inline-block",
+              }}
+            >
+              Why Join the Journey?
+            </motion.span>
+          </h2>
 
-                {/* Animated line */}
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "120px" }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                  style={{
-                    height: "3px",
-                    borderRadius: "2px",
-                    background: item.color,
-                  }}
-                />
-              </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            viewport={{ once: true }}
+            style={{
+              fontSize: isMobile ? "15px" : "18px",
+              color: "#9CA3AF",
+              lineHeight: "1.6",
+              fontFamily: "Inter, sans-serif",
+              maxWidth: "700px",
+              margin: "0 auto",
+            }}
+          >
+            "Let's build a creative family where every student gets a chance to grow and shine."
+          </motion.p>
+        </motion.div>
+
+        {/* Cards Grid */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: isMobile ? "20px" : "28px",
+          }}
+        >
+          {points.map((item, index) => (
+            <PointCard key={index} item={item} index={index} />
+          ))}
+        </div>
+
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          style={{
+            textAlign: "center",
+            marginTop: isMobile ? "60px" : "80px",
+          }}
+        >
+          <motion.a
+            href="#contact"
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 0 50px rgba(0, 102, 255, 0.8), 0 0 100px rgba(196, 0, 255, 0.6)",
+            }}
+            whileTap={{ scale: 0.98 }}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "12px",
+              padding: isMobile ? "18px 42px" : "22px 60px",
+              background: "linear-gradient(135deg, #0066FF, #8B5CF6, #C400FF)",
+              color: "white",
+              borderRadius: "50px",
+              fontWeight: "700",
+              fontSize: isMobile ? "17px" : "19px",
+              textDecoration: "none",
+              fontFamily: "Poppins, sans-serif",
+              border: "1px solid rgba(255, 255, 255, 0.15)",
+              boxShadow: "0 12px 48px rgba(0, 102, 255, 0.5), inset 0 1px 0 rgba(255,255,255,0.2)",
+              cursor: "pointer",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            <span style={{ position: "relative", zIndex: 2, textShadow: "0 2px 10px rgba(0,0,0,0.3)" }}>
+              Join the Community
+            </span>
+
+            <motion.div
+              animate={{ rotate: [0, 15, -15, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              style={{ position: "relative", zIndex: 2 }}
+            >
+              <FiStar size={20} />
             </motion.div>
-          );
-        })}
+
+            {/* Shimmer Effect */}
+            <motion.div
+              animate={{ x: ["-100%", "200%"] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "50%",
+                height: "100%",
+                background: "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)",
+                transform: "skewX(-20deg)",
+              }}
+            />
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );
 };
 
 export default WhyJoin;
-
