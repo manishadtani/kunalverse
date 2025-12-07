@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { FiMenu, FiX, FiHome, FiUser, FiBriefcase, FiMail, FiAward } from 'react-icons/fi';
+import { FiMenu, FiX, FiHome, FiUser, FiBriefcase, FiMail, FiAward, FiUsers } from 'react-icons/fi';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,13 +25,14 @@ const Navbar = () => {
     };
   }, []);
 
-  const navLinks = [
-    { name: 'Home', href: '#home', icon: FiHome },
-    { name: 'About', href: '#about', icon: FiUser },
-    { name: 'Goals', href: '#skills', icon: FiAward },
-    { name: 'Work', href: '#work', icon: FiBriefcase },
-    { name: 'Contact', href: '#contact', icon: FiMail },
-  ];
+ const navLinks = [
+  { name: 'Home', href: '#home', icon: FiHome },
+  { name: 'About', href: '#about', icon: FiUser },
+  { name: 'Why Join Us', href: '#whyjoin', icon: FiUsers }, 
+  { name: 'Goals', href: '#goals', icon: FiAward },
+  { name: 'Contact', href: '#contact', icon: FiMail },
+];
+
 
   const handleNavClick = (e, href) => {
     e.preventDefault();
@@ -202,8 +203,11 @@ const Navbar = () => {
 
                 {/* Vote Button - Cinematic Style */}
                 <motion.a
-                  href="#vote"
-                  onClick={(e) => handleNavClick(e, '#contact')}
+                  href=""
+                  onClick={(e) => {
+  e.preventDefault();
+  window.open('https://chat.whatsapp.com/DiPijogvuHVGHllGMTlT8F', '_blank');
+}}
                   whileHover={{ 
                     scale: 1.05,
                     boxShadow: '0 0 40px rgba(0, 102, 255, 0.8), 0 0 80px rgba(196, 0, 255, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.1)'
@@ -226,7 +230,7 @@ const Navbar = () => {
                     transition: 'all 0.3s ease',
                   }}
                 >
-                  <span style={{ position: 'relative', zIndex: 10 }}>Vote Now</span>
+                  <span style={{ position: 'relative', zIndex: 10 }}>Join us</span>
                   {/* Shimmer Effect */}
                   <motion.div
                     animate={{

@@ -1439,8 +1439,11 @@ const Hero = () => {
             >
               {/* Primary CTA */}
               <motion.a
-                href="#vote"
-                onClick={handleVoteClick}
+                href="#contact"
+onClick={(e) => {
+  e.preventDefault();
+  window.open('https://chat.whatsapp.com/DiPijogvuHVGHllGMTlT8F', '_blank');
+}}
                 whileHover={{ 
                   scale: 1.05,
                   boxShadow: '0 0 40px rgba(0, 102, 255, 0.8), 0 0 80px rgba(196, 0, 255, 0.6)'
@@ -1464,7 +1467,7 @@ const Hero = () => {
                   overflow: 'hidden',
                 }}
               >
-                <span style={{ position: 'relative', zIndex: 2 }}>Vote Now</span>
+                <span style={{ position: 'relative', zIndex: 2 }}>Join us</span>
                 <motion.div
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
@@ -1489,7 +1492,7 @@ const Hero = () => {
               </motion.a>
 
               {/* Secondary CTA */}
-              <motion.a
+              {/* <motion.a
                 href="#work"
                 onClick={handleExploreClick}
                 whileHover={{ 
@@ -1517,7 +1520,7 @@ const Hero = () => {
               >
                 Explore Work
                 <FiPlay size={isMobile ? 16 : 20} />
-              </motion.a>
+              </motion.a> */}
             </motion.div>
           </motion.div>
         </div>

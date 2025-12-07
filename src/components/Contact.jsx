@@ -33,32 +33,31 @@ const Contact = () => {
       return;
     }
     
-    // WhatsApp message format
-    const whatsappMessage = `
-🌟 *New Contact Request* 🌟
-
-👤 *Name:* ${formData.fullName}
-📧 *Email:* ${formData.email}
-📱 *Phone:* ${formData.phone}
-
-💬 *Message:*
-${formData.message}
-
----
-_I want to join the community group!_
-    `.trim();
-
-    // Replace with your WhatsApp number (with country code, no + or spaces)
-    const whatsappNumber = '916377499766'; // Example: 919876543210 for India
+    // Store user data in console (optional - for your records)
+    console.log('New Member Details:', {
+      name: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+      timestamp: new Date().toISOString()
+    });
     
-    // Encode message for URL
-    const encodedMessage = encodeURIComponent(whatsappMessage);
+    // WhatsApp GROUP invite link
+    const whatsappGroupLink = 'https://chat.whatsapp.com/DiPijogvuHVGHllGMTlT8F';
     
-    // Create WhatsApp URL
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    // Open group link directly
+    window.open(whatsappGroupLink, '_blank');
     
-    // Open WhatsApp
-    window.open(whatsappURL, '_blank');
+    // Clear form after submission
+    setFormData({
+      fullName: '',
+      email: '',
+      phone: '',
+      message: ''
+    });
+    
+    // Success message
+    alert('✅ Opening WhatsApp group! Click "Join Group" to complete your registration and connect with the community.');
   };
 
   return (

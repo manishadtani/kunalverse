@@ -1,261 +1,22 @@
-// import { motion } from 'framer-motion';
-// import { FiInstagram, FiLinkedin, FiGithub, FiTwitter, FiMail, FiHeart } from 'react-icons/fi';
-// import { SiYoutube } from 'react-icons/si';
-
-// const Footer = () => {
-//   const socialLinks = [
-//     { name: 'Instagram', icon: FiInstagram, href: '#', color: '#E4405F' },
-//     { name: 'LinkedIn', icon: FiLinkedin, href: '#', color: '#0077B5' },
-//     { name: 'YouTube', icon: SiYoutube, href: '#', color: '#FF0000' },
-//     { name: 'Twitter', icon: FiTwitter, href: '#', color: '#1DA1F2' },
-//     { name: 'GitHub', icon: FiGithub, href: '#', color: '#333' },
-//   ];
-
-//   const quickLinks = [
-//     { name: 'Home', href: '#home' },
-//     { name: 'About', href: '#about' },
-//     { name: 'Skills', href: '#skills' },
-//     { name: 'Work', href: '#work' },
-//     { name: 'Contact', href: '#contact' },
-//   ];
-
-//   const handleNavClick = (e, href) => {
-//     e.preventDefault();
-//     const element = document.querySelector(href);
-//     if (element) {
-//       element.scrollIntoView({ behavior: 'smooth' });
-//     }
-//   };
-
-//   return (
-//     <footer className="relative bg-gradient-to-b from-dark via-navy to-black text-white overflow-hidden">
-//       {/* Animated Background */}
-//       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-//         <motion.div
-//           animate={{
-//             scale: [1, 1.2, 1],
-//             rotate: [0, 180, 360],
-//           }}
-//           transition={{
-//             duration: 20,
-//             repeat: Infinity,
-//             ease: "linear"
-//           }}
-//           className="absolute -top-1/2 -left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
-//         />
-//         <motion.div
-//           animate={{
-//             scale: [1.2, 1, 1.2],
-//             rotate: [360, 180, 0],
-//           }}
-//           transition={{
-//             duration: 15,
-//             repeat: Infinity,
-//             ease: "linear"
-//           }}
-//           className="absolute -bottom-1/2 -right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"
-//         />
-//       </div>
-
-//       {/* Neon Line Divider */}
-//       <div className="relative h-1 bg-gradient-to-r from-transparent via-primary to-secondary to-transparent">
-//         <motion.div
-//           animate={{
-//             x: ['-100%', '100%'],
-//           }}
-//           transition={{
-//             duration: 3,
-//             repeat: Infinity,
-//             ease: "linear"
-//           }}
-//           className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-50"
-//         />
-//       </div>
-
-//       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-//         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-//           {/* Brand Section */}
-//           <motion.div
-//             initial={{ opacity: 0, y: 20 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.5 }}
-//             className="space-y-4"
-//           >
-//             <div className="flex items-center gap-3">
-//               <div className="relative">
-//                 <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary blur-lg opacity-70"></div>
-//                 <div className="relative w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center font-bold text-white text-xl shadow-xl">
-//                   K
-//                 </div>
-//               </div>
-//               <div>
-//                 <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-//                   KUNALVERSE
-//                 </h3>
-//                 <p className="text-xs text-gray-400">Content Creator • PW IOI</p>
-//               </div>
-//             </div>
-//             <p className="text-gray-400 text-sm leading-relaxed">
-//               Creative storyteller passionate about crafting engaging content. 
-//               Vote for innovation, creativity, and dedication.
-//             </p>
-//             <motion.a
-//               href="#vote"
-//               onClick={(e) => handleNavClick(e, '#contact')}
-//               whileHover={{ scale: 1.05 }}
-//               whileTap={{ scale: 0.95 }}
-//               className="inline-block px-6 py-2.5 bg-gradient-to-r from-primary to-secondary rounded-full font-semibold text-white shadow-lg"
-//             >
-//               Vote for Kunal
-//             </motion.a>
-//           </motion.div>
-
-//           {/* Quick Links */}
-//           <motion.div
-//             initial={{ opacity: 0, y: 20 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.5, delay: 0.1 }}
-//             className="space-y-4"
-//           >
-//             <h4 className="text-lg font-bold text-white mb-4">Quick Links</h4>
-//             <ul className="space-y-3">
-//               {quickLinks.map((link, index) => (
-//                 <motion.li
-//                   key={link.name}
-//                   initial={{ opacity: 0, x: -20 }}
-//                   whileInView={{ opacity: 1, x: 0 }}
-//                   viewport={{ once: true }}
-//                   transition={{ delay: index * 0.1 }}
-//                 >
-//                   <a
-//                     href={link.href}
-//                     onClick={(e) => handleNavClick(e, link.href)}
-//                     className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center gap-2 group"
-//                   >
-//                     <span className="w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-4 transition-all duration-300"></span>
-//                     {link.name}
-//                   </a>
-//                 </motion.li>
-//               ))}
-//             </ul>
-//           </motion.div>
-
-//           {/* Social Links */}
-//           <motion.div
-//             initial={{ opacity: 0, y: 20 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.5, delay: 0.2 }}
-//             className="space-y-4"
-//           >
-//             <h4 className="text-lg font-bold text-white mb-4">Connect With Me</h4>
-//             <div className="flex flex-wrap gap-4">
-//               {socialLinks.map((social, index) => (
-//                 <motion.a
-//                   key={social.name}
-//                   href={social.href}
-//                   target="_blank"
-//                   rel="noopener noreferrer"
-//                   initial={{ opacity: 0, scale: 0 }}
-//                   whileInView={{ opacity: 1, scale: 1 }}
-//                   viewport={{ once: true }}
-//                   transition={{ delay: index * 0.1 }}
-//                   whileHover={{ scale: 1.2, rotate: 5 }}
-//                   whileTap={{ scale: 0.9 }}
-//                   className="w-12 h-12 bg-white/5 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/10 hover:border-white/30 transition-all duration-300 group relative overflow-hidden"
-//                 >
-//                   <motion.div
-//                     className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-//                     style={{ background: `linear-gradient(135deg, ${social.color}, transparent)` }}
-//                   />
-//                   <social.icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors duration-300 relative z-10" />
-//                 </motion.a>
-//               ))}
-//             </div>
-//             <div className="mt-6 p-4 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10">
-//               <div className="flex items-center gap-2 text-gray-400 text-sm">
-//                 <FiMail className="w-4 h-4" />
-//                 <a href="mailto:kunal@kunalverse.com" className="hover:text-white transition-colors">
-//                   kunal@kunalverse.com
-//                 </a>
-//               </div>
-//             </div>
-//           </motion.div>
-//         </div>
-
-//         {/* Bottom Bar */}
-//         <motion.div
-//           initial={{ opacity: 0 }}
-//           whileInView={{ opacity: 1 }}
-//           viewport={{ once: true }}
-//           transition={{ duration: 0.5, delay: 0.3 }}
-//           className="pt-8 border-t border-white/10"
-//         >
-//           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
-//             <p className="flex items-center gap-2">
-//               Made with <FiHeart className="text-red-500 animate-pulse" /> by Kunal
-//             </p>
-//             <p>
-//               © {new Date().getFullYear()} KunalVerse. All rights reserved.
-//             </p>
-//             <p className="text-xs">
-//               Powered by <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-semibold">React + Framer Motion</span>
-//             </p>
-//           </div>
-//         </motion.div>
-//       </div>
-
-//       {/* Floating Particles */}
-//       {[...Array(5)].map((_, i) => (
-//         <motion.div
-//           key={i}
-//           className="absolute w-2 h-2 bg-white/20 rounded-full"
-//           style={{
-//             left: `${Math.random() * 100}%`,
-//             top: `${Math.random() * 100}%`,
-//           }}
-//           animate={{
-//             y: [0, -30, 0],
-//             opacity: [0.2, 0.5, 0.2],
-//           }}
-//           transition={{
-//             duration: 3 + Math.random() * 2,
-//             repeat: Infinity,
-//             delay: Math.random() * 2,
-//           }}
-//         />
-//       ))}
-//     </footer>
-//   );
-// };
-
-// export default Footer;
-
-
-
-
-
 import { motion } from 'framer-motion';
-import { FiInstagram, FiLinkedin, FiGithub, FiTwitter, FiMail, FiHeart, FiExternalLink } from 'react-icons/fi';
+import { FiInstagram, FiLinkedin, FiGithub, FiTwitter, FiMail, FiHeart } from 'react-icons/fi';
 import { SiYoutube } from 'react-icons/si';
 
 const Footer = () => {
   const socialLinks = [
-    { name: 'Instagram', icon: FiInstagram, href: '#', color: '#E4405F' },
-    { name: 'LinkedIn', icon: FiLinkedin, href: '#', color: '#0077B5' },
-    { name: 'YouTube', icon: SiYoutube, href: '#', color: '#FF0000' },
-    { name: 'Twitter', icon: FiTwitter, href: '#', color: '#1DA1F2' },
-    { name: 'GitHub', icon: FiGithub, href: '#', color: '#6e5494' },
+    { name: 'Instagram', icon: FiInstagram, href: 'https://www.instagram.com/kunal.adtani?igsh=MTg3eTlncmVkMmJxdw==', color: '#E4405F' },
+    { name: 'LinkedIn', icon: FiLinkedin, href: 'https://www.linkedin.com/in/kunal-adtani-966512387?utm_source=share_via&utm_content=profile&utm_medium=member_android', color: '#0077B5' },
+    // { name: 'YouTube', icon: SiYoutube, href: '#', color: '#FF0000' },
+    // { name: 'Twitter', icon: FiTwitter, href: '#', color: '#1DA1F2' },
+    // { name: 'GitHub', icon: FiGithub, href: '#', color: '#6e5494' },
   ];
 
   const quickLinks = [
     { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Work', href: '#work' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About Us', href: '#about' },
+    { name: 'Why Join Us', href: '#whyjoin' },
+    { name: 'Goals', href: '#goals' },
+    { name: 'Contact Us', href: '#contact' },
   ];
 
   const handleNavClick = (e, href) => {
@@ -431,45 +192,16 @@ const Footer = () => {
               fontFamily: 'Inter, sans-serif',
               maxWidth: '350px',
             }}>
-              Crafting stories through visual excellence. Passionate about creating content that inspires and engages. 
+              Crafting stories through visual excellence. Join our community of creators and be part of something extraordinary.
               <span style={{ 
                 color: '#0066FF', 
                 fontWeight: '600',
                 display: 'block',
                 marginTop: '8px',
               }}>
-                Vote for creativity, dedication & innovation.
+                Create • Collaborate • Grow Together
               </span>
             </p>
-            
-            <motion.a
-              href="#vote"
-              onClick={(e) => handleNavClick(e, '#contact')}
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: '0 0 30px rgba(0, 102, 255, 0.6), 0 0 60px rgba(196, 0, 255, 0.4)'
-              }}
-              whileTap={{ scale: 0.95 }}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '10px',
-                padding: '14px 32px',
-                background: 'linear-gradient(135deg, #0066FF 0%, #8B5CF6 50%, #C400FF 100%)',
-                borderRadius: '50px',
-                fontWeight: '700',
-                color: 'white',
-                boxShadow: '0 8px 32px rgba(0, 102, 255, 0.3)',
-                textDecoration: 'none',
-                fontFamily: 'Poppins, sans-serif',
-                fontSize: '15px',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                maxWidth: 'fit-content',
-              }}
-            >
-              Vote for Kunal
-              <FiExternalLink size={18} />
-            </motion.a>
           </motion.div>
 
           {/* Quick Links - Cinematic */}
@@ -647,7 +379,7 @@ const Footer = () => {
               }}>
                 <FiMail style={{ width: '20px', height: '20px', color: '#0066FF' }} />
                 <a
-                  href="mailto:kunal@kunalverse.com"
+                  href="mailto:adtanikunal010@gmail.com"
                   style={{ 
                     color: '#9CA3AF', 
                     textDecoration: 'none',
@@ -662,7 +394,7 @@ const Footer = () => {
                     e.target.style.textShadow = 'none';
                   }}
                 >
-                  kunal@kunalverse.com
+                  adtanikunal010@gmail.com
                 </a>
               </div>
             </motion.div>
