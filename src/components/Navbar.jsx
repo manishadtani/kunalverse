@@ -1,19 +1,24 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { FiMenu, FiX, FiHome, FiUser, FiBriefcase, FiMail, FiAward, FiUsers } from 'react-icons/fi';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth >= 768) {
+        setIsOpen(false);
+      }
+    };
+    
+    handleResize();
+    
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -25,22 +30,32 @@ const Navbar = () => {
     };
   }, []);
 
- const navLinks = [
-  { name: 'Home', href: '#home', icon: FiHome },
-  { name: 'About', href: '#about', icon: FiUser },
-  { name: 'Why Join Us', href: '#whyjoin', icon: FiUsers }, 
-  { name: 'Goals', href: '#goals', icon: FiAward },
-  { name: 'Contact', href: '#contact', icon: FiMail },
-];
-
+  const navLinks = [
+    { name: 'Home', href: '#home', icon: FiHome },
+    { name: 'About', href: '#about', icon: FiUser },
+    { name: 'Why Join Us', href: '#whyjoin', icon: FiUsers }, 
+    { name: 'Goals', href: '#goals', icon: FiAward },
+    { name: 'Contact', href: '#contact', icon: FiMail },
+  ];
 
   const handleNavClick = (e, href) => {
     e.preventDefault();
     setIsOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    
+    // Small delay to ensure menu closes first
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        const navHeight = 85;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navHeight - 20; // Extra padding
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
   };
 
   return (
@@ -84,7 +99,6 @@ const Navbar = () => {
               }}
             >
               <div style={{ position: 'relative' }}>
-                {/* Neon Glow Effect */}
                 <motion.div 
                   animate={{ 
                     scale: [1, 1.15, 1],
@@ -104,7 +118,6 @@ const Navbar = () => {
                     opacity: 0.5,
                   }}
                 />
-                {/* Logo Image */}
                 <motion.img 
                   src="/kunalverse1.png" 
                   alt="KunalVerse Logo"
@@ -182,7 +195,6 @@ const Navbar = () => {
                   >
                     <link.icon style={{ width: '18px', height: '18px' }} />
                     {link.name}
-                    {/* Underline Effect */}
                     <motion.div
                       style={{
                         position: 'absolute',
@@ -201,13 +213,10 @@ const Navbar = () => {
                   </motion.a>
                 ))}
 
-                {/* Vote Button - Cinematic Style */}
                 <motion.a
-                  href=""
-                  onClick={(e) => {
-  e.preventDefault();
-  window.open('https://chat.whatsapp.com/DiPijogvuHVGHllGMTlT8F', '_blank');
-}}
+                  href="https://chat.whatsapp.com/DiPijogvuHVGHllGMTlT8F"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ 
                     scale: 1.05,
                     boxShadow: '0 0 40px rgba(0, 102, 255, 0.8), 0 0 80px rgba(196, 0, 255, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.1)'
@@ -231,7 +240,6 @@ const Navbar = () => {
                   }}
                 >
                   <span style={{ position: 'relative', zIndex: 10 }}>Join us</span>
-                  {/* Shimmer Effect */}
                   <motion.div
                     animate={{
                       x: ['-100%', '200%'],
@@ -268,21 +276,12 @@ const Navbar = () => {
                   color: 'white',
                   padding: '12px',
                   borderRadius: '12px',
-                  background: 'rgba(0, 0, 0, 0.4)',
-                  border: '1px solid rgba(0, 102, 255, 0.3)',
+                  background: isOpen ? 'rgba(0, 102, 255, 0.2)' : 'rgba(0, 0, 0, 0.4)',
+                  border: `1px solid ${isOpen ? 'rgba(0, 102, 255, 0.5)' : 'rgba(0, 102, 255, 0.3)'}`,
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
-                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.4)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(0, 102, 255, 0.2)';
-                  e.currentTarget.style.borderColor = 'rgba(0, 102, 255, 0.5)';
-                  e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 102, 255, 0.4)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(0, 0, 0, 0.4)';
-                  e.currentTarget.style.borderColor = 'rgba(0, 102, 255, 0.3)';
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.4)';
+                  boxShadow: isOpen ? '0 0 20px rgba(0, 102, 255, 0.4)' : '0 4px 16px rgba(0, 0, 0, 0.4)',
+                  zIndex: 60,
                 }}
               >
                 <motion.div
@@ -296,94 +295,93 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu - Cinematic */}
-        {isMobile && (
-          <motion.div
-            initial={false}
-            animate={isOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            style={{
-              overflow: 'hidden',
-              background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.98) 0%, rgba(10, 15, 31, 0.95) 100%)',
-              backdropFilter: 'blur(20px) saturate(180%)',
-              WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-              borderTop: '1px solid rgba(0, 102, 255, 0.2)',
-              boxShadow: 'inset 0 1px 0 rgba(0, 102, 255, 0.1)',
-            }}
-          >
-            <div style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              {navLinks.map((link, index) => (
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobile && isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              style={{
+                overflow: 'hidden',
+                background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.98) 0%, rgba(10, 15, 31, 0.95) 100%)',
+                backdropFilter: 'blur(20px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                borderTop: '1px solid rgba(0, 102, 255, 0.2)',
+                boxShadow: 'inset 0 1px 0 rgba(0, 102, 255, 0.1), 0 20px 40px rgba(0, 0, 0, 0.8)',
+              }}
+            >
+              <div style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                {navLinks.map((link, index) => {
+                  const Icon = link.icon;
+                  return (
+                    <motion.a
+                      key={link.name}
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -30 }}
+                      transition={{ delay: index * 0.05, duration: 0.3 }}
+                      whileTap={{ scale: 0.96 }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '16px',
+                        color: 'rgba(255, 255, 255, 0.7)',
+                        fontWeight: '500',
+                        padding: '16px 20px',
+                        borderRadius: '14px',
+                        textDecoration: 'none',
+                        fontFamily: 'Inter, sans-serif',
+                        fontSize: '16px',
+                        background: 'rgba(0, 0, 0, 0.3)',
+                        border: '1px solid rgba(255, 255, 255, 0.05)',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <Icon style={{ width: '22px', height: '22px' }} />
+                      {link.name}
+                    </motion.a>
+                  );
+                })}
+                
                 <motion.a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.4 }}
+                  href="https://chat.whatsapp.com/DiPijogvuHVGHllGMTlT8F"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ delay: 0.3 }}
                   whileTap={{ scale: 0.96 }}
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '16px',
-                    color: 'rgba(255, 255, 255, 0.7)',
-                    fontWeight: '500',
-                    padding: '16px 20px',
-                    borderRadius: '14px',
+                    display: 'block',
+                    textAlign: 'center',
+                    padding: '16px 28px',
+                    background: 'linear-gradient(135deg, #0066FF 0%, #8B5CF6 50%, #C400FF 100%)',
+                    borderRadius: '50px',
+                    fontWeight: '700',
+                    color: 'white',
+                    boxShadow: '0 8px 32px rgba(0, 102, 255, 0.4), 0 0 60px rgba(196, 0, 255, 0.2)',
+                    marginTop: '20px',
                     textDecoration: 'none',
-                    fontFamily: 'Inter, sans-serif',
+                    fontFamily: 'Poppins, sans-serif',
                     fontSize: '16px',
-                    background: 'rgba(0, 0, 0, 0.3)',
-                    border: '1px solid rgba(255, 255, 255, 0.05)',
-                    transition: 'all 0.3s ease',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-                  }}
-                  onTouchStart={(e) => {
-                    e.currentTarget.style.color = 'white';
-                    e.currentTarget.style.background = 'rgba(0, 102, 255, 0.1)';
-                    e.currentTarget.style.borderColor = 'rgba(0, 102, 255, 0.3)';
-                    e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 102, 255, 0.3)';
-                  }}
-                  onTouchEnd={(e) => {
-                    e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
-                    e.currentTarget.style.background = 'rgba(0, 0, 0, 0.3)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.05)';
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
+                    letterSpacing: '0.5px',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    cursor: 'pointer',
                   }}
                 >
-                  <link.icon style={{ width: '22px', height: '22px' }} />
-                  {link.name}
+                  Join Now
                 </motion.a>
-              ))}
-              
-              <motion.a
-                href="#vote"
-                onClick={(e) => handleNavClick(e, '#contact')}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                whileTap={{ scale: 0.96 }}
-                style={{
-                  display: 'block',
-                  textAlign: 'center',
-                  padding: '16px 28px',
-                  background: 'linear-gradient(135deg, #0066FF 0%, #8B5CF6 50%, #C400FF 100%)',
-                  borderRadius: '50px',
-                  fontWeight: '700',
-                  color: 'white',
-                  boxShadow: '0 8px 32px rgba(0, 102, 255, 0.4), 0 0 60px rgba(196, 0, 255, 0.2)',
-                  marginTop: '20px',
-                  textDecoration: 'none',
-                  fontFamily: 'Poppins, sans-serif',
-                  fontSize: '16px',
-                  letterSpacing: '0.5px',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                }}
-              >
-                Vote Now
-              </motion.a>
-            </div>
-          </motion.div>
-        )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
     </>
   );
